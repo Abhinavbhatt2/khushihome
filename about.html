@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Khushi - Vedic Astrology</title>
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #8a3324;
+            --secondary-color: #fdf5e6;
+            --text-color: #333;
+            --light-text-color: #555;
+            --white-color: #fff;
+            --font-family: 'Georgia', serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--secondary-color);
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo img {
+            width: 150px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .contact-info {
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        .get-consultation {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 4px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero .about-tag {
+            background-color: #fff0db;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-family);
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--light-text-color);
+        }
+
+        /* Main Content Section */
+        .main-content {
+            display: flex;
+            gap: 40px;
+            padding: 20px;
+            align-items: flex-start;
+        }
+
+        .profile-card {
+            flex-basis: 35%;
+            text-align: center;
+            background: var(--white-color);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .profile-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .profile-card h2 {
+            margin: 15px 0 5px;
+            font-family: var(--font-family);
+        }
+
+        .profile-card .youtube-btn {
+            display: block;
+            background-color: var(--white-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        .journey-details {
+            flex-basis: 65%;
+        }
+
+        .journey-details h2 {
+            font-family: var(--font-family);
+            font-size: 36px;
+        }
+        
+        .journey-details h2 span {
+             color: var(--primary-color);
+        }
+
+        .journey-details p {
+            line-height: 1.6;
+            color: var(--light-text-color);
+        }
+
+        /* Credentials Section */
+        .credentials {
+            background: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .credentials h3 {
+            font-family: var(--font-family);
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .credential-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .credential-item span {
+            margin-left: 10px;
+        }
+
+        /* Philosophy and Expertise */
+        .philosophy, .expertise {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+             font-family: var(--font-family);
+             font-size: 36px;
+             margin-bottom: 40px;
+        }
+
+        .philosophy-grid, .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            text-align: left;
+        }
+        
+        .philosophy-item, .expertise-item {
+            background: var(--white-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .expertise-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .expertise-item span {
+            margin-left: 10px;
+        }
+        
+        .philosophy-item h4 {
+            font-family: var(--font-family);
+            font-size: 20px;
+        }
+        
+        .philosophy-item p {
+            color: var(--light-text-color);
+        }
+        
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .cta-btn {
+            background-color: #ffd700;
+            color: var(--primary-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            display: inline-block;
+        }
+        
+        .cta .save-tag {
+            display: inline-block;
+            background: #fff0db;
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 50px 20px;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-about, .footer-links, .footer-contact {
+            flex: 1;
+            margin: 20px;
+            min-width: 250px;
+        }
+        
+        .footer-about h4 {
+            font-family: var(--font-family);
+            font-size: 20px;
+        }
+
+        .footer-about .social-icons a {
+            color: var(--white-color);
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .footer-links h4, .footer-contact h4 {
+            font-family: var(--font-family);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li a {
+            color: var(--white-color);
+            text-decoration: none;
+            line-height: 2;
+        }
+        
+        .footer-contact p {
+            line-height: 1.8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-color);
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            nav a {
+                padding: 15px;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .contact-info {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/A3QlKPKKE7ulbQOy/logo-final-AE07Xvpl3BH2ra75.png" alt="Astro Khushi Logo">
+        </div>
+        <nav id="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Courses</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <span class="contact-info">+91 88765 43210</span>
+            <a href="#" class="get-consultation">Get Consultation</a>
+        </nav>
+        <div class="hamburger" id="hamburger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <span class="about-tag">About Astro Khushi</span>
+                <h1>Meet Your Spiritual Guide</h1>
+                <p>Illuminating paths through ancient wisdom and cosmic insights</p>
+            </div>
+        </section>
+
+        <section class="container main-content">
+            <aside class="profile-card">
+                <!-- Image Updated as Requested -->
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1045,fit=crop,trim=0;1043.4522821576763;0;697.6929460580913/A3QlKPKKE7ulbQOy/img_9143-mxB21LNaoOSRk9jZ.JPG" alt="Khushi, Vedic Astrologer">
+                <h2>Khushi &#9733;</h2>
+                <a href="#" class="youtube-btn">Visit YouTube Channel</a>
+            </aside>
+            <article class="journey-details">
+                <h2>My Journey into <span>Vedic Astrology</span></h2>
+                <p>Namaste! I am Khushi, and my journey with Vedic astrology began over 15 years ago when I experienced a profound spiritual awakening. What started as personal curiosity transformed into a deep commitment to mastering the ancient science of Jyotish.</p>
+                <p>Born into a family with spiritual roots, I was naturally drawn to the mysteries of the cosmos. I spent years studying under renowned Vedic masters, learning not just the technical aspects of astrology, but also the intuitive and compassionate approach needed to guide others through life's complexities.</p>
+                <p>My practice combines traditional Vedic wisdom with modern understanding. I believe that astrology is not about predicting a fixed future, but about understanding cosmic patterns and making empowered choices. Each consultation is a sacred space where ancient wisdom meets your unique life journey.</p>
+                <p>Through my YouTube channel and personal consultations, I've had the privilege of guiding over 10,000 individuals from around the world. My mission is to make Vedic wisdom accessible, practical, and transformative for everyone seeking clarity and purpose.</p>
+                
+                <div class="credentials">
+                    <h3>Credentials & Recognition</h3>
+                    <div class="credentials-grid">
+                        <div class="credential-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certified Vedic Astrologer</span>
+                        </div>
+                        <div class="credential-item">
+                           <i class="fas fa-clock"></i>
+                            <span>15+ Years of Study & Practice</span>
+                        </div>
+                        <div class="credential-item">
+                           <i class="fas fa-users"></i>
+                            <span>10,000+ Happy Consultations</span>
+                        </div>
+                        <div class="credential-item">
+                           <i class="fas fa-star"></i>
+                            <span>4.9/5 Client Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="philosophy">
+            <div class="container">
+                <h2 class="section-title">My Approach & Philosophy</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-item">
+                        <h4>Compassionate Guidance</h4>
+                        <p>Every reading is conducted with empathy and understanding, creating a safe space for honest exploration of your life's questions.</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h4>Traditional Yet Practical</h4>
+                        <p>I honor ancient Vedic traditions while making insights relevant and applicable to modern life challenges.</p>
+                    </div>
+                    <div class="philosophy-item">
+                        <h4>Empowering You</h4>
+                        <p>My goal is to empower you with knowledge and clarity so you can make informed decisions aligned with your highest good.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expertise">
+            <div class="container">
+                <h2 class="section-title">Areas of Expertise</h2>
+                <p>Comprehensive astrological services tailored to your unique spiritual journey</p>
+                <div class="expertise-grid">
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Vedic Birth Chart Analysis</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Predictive Astrology</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Relationship Compatibility</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Career & Financial Guidance</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Spiritual Counseling</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Vastu Shastra</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Numerology</span></div>
+                    <div class="expertise-item"><i class="fas fa-check-circle"></i><span>Gemstone Recommendations</span></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                 <h2 class="section-title">Begin Your Cosmic Journey Today</h2>
+                 <p>Book a personalized consultation and discover the cosmic roadmap to your best life.</p>
+                 <a href="#" class="cta-btn">Schedule Personal Reading</a>
+                 <div class="save-tag">Save ₹500</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h4>Astro Khushi</h4>
+                <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine destiny with personalized astrological consultations and spiritual guidance.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Khushi</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Free Horoscope</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-phone"></i> +91 88765 43210</p>
+                <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Astro Khushi. All rights reserved. | Vedic Astrology Services</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
