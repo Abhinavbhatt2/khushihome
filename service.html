@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Khushi - Vedic Astrology</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #fffaf5;
+            color: #5c3a3a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fffaf5;
+            border-bottom: 1px solid #ede7e1;
+        }
+
+        .logo img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5c3a3a;
+            font-weight: 500;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-contact span {
+            margin-right: 20px;
+            font-weight: 500;
+        }
+        
+        .btn {
+            background-color: #8c3a3a;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #7a2f2f;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Main Content with Background FIX */
+        main {
+            /* This combines the background color and image, then blends them */
+            background: #fffaf5 url('https://github.com/vickey2025/khushi-astro-guide/blob/main/src/assets/services-bg.jpg?raw=true') no-repeat center top;
+            background-size: contain; /* Use contain to ensure the whole mandala is visible */
+            background-blend-mode: overlay; /* This blends the image with the background color */
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero h1 span {
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .service-card .card-content {
+            flex-grow: 1;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #5c3a3a;
+        }
+        
+        .service-card p {
+           color: #7c5a5a;
+           margin-bottom: 20px;
+        }
+        
+        .service-footer {
+            margin-top: auto;
+        }
+        
+        .duration {
+            display: inline-block;
+            background-color: #f5f0eb;
+            color: #8c3a3a;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .cta-box {
+            background-color: rgba(255, 250, 245, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            display: inline-block;
+            border: 1px solid #ede7e1;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #5c3a3a;
+            font-weight: 400;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #8c3a3a;
+            color: #f5f0eb;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .footer-about .logo-footer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-about .logo-footer .star-icon {
+            background-color: #d4af37;
+            border-radius: 50%;
+            padding: 8px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #8c3a3a;
+        }
+        
+        .footer-about .logo-footer span {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .social-icons {
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: #f5f0eb;
+            margin-right: 15px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        
+        .footer-links h3, .footer-contact-info h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #f5f0eb;
+        }
+        
+        .footer-contact-info p {
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact-info p i {
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #a15f5f;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        
+        .footer-bottom a {
+            color: #f5f0eb;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: #fffaf5;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                z-index: 1000;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav li {
+                margin: 15px 0;
+            }
+            
+            .header-contact .phone-number {
+                display: none;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-about .logo-footer, .footer-contact-info p {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-bottom div:first-child {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="#"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/A3QlKPKKE7ulbQOy/logo-final-AE07Xvpl3BH2ra75.png" alt="Astro Khushi Logo"></a>
+        </div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-contact">
+            <span class="phone-number"><i class="fas fa-phone-alt"></i> +91 98765 43210</span>
+            <a href="#" class="btn">Get Consultation</a>
+            <div class="mobile-nav-toggle" id="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Our Sacred <span>Services</span></h1>
+                <p>Comprehensive Vedic astrology services to guide you through every aspect of life with ancient wisdom and modern understanding.</p>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="fas fa-star fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Birth Chart Reading</h3>
+                            <p>Complete analysis of your birth chart (Kundali) with planetary positions and their effects on your life.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">45 mins</span>
+                             <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="far fa-compass fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Career Guidance</h3>
+                            <p>Discover your ideal career path and professional success through astrological insights.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">60 mins</span>
+                             <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                         <div class="card-content">
+                            <i class="far fa-heart fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Love & Relationships</h3>
+                            <p>Find compatibility, resolve relationship issues, and discover your soulmate through Vedic matching.</p>
+                        </div>
+                         <div class="service-footer">
+                             <span class="duration">50 mins</span>
+                             <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                         <div class="card-content">
+                            <i class="fas fa-chart-line fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Financial Astrology</h3>
+                            <p>Get insights on wealth, investments, and financial growth based on planetary influences.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">45 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="fas fa-child fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Child Astrology</h3>
+                            <p>Name suggestions, future predictions, and guidance for your child's bright future.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">40 mins</span>
+                             <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="fas fa-home fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Vastu Consultation</h3>
+                            <p>Home and office Vastu guidance to bring positive energy and prosperity.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">75 mins</span>
+                             <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="far fa-building fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Business Astrology</h3>
+                            <p>Launch dates, partnership compatibility, and business growth strategies.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">90 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-content">
+                            <i class="far fa-clock fa-2x" style="color:#d4af37; opacity:0.3;"></i>
+                            <h3>Muhurat Selection</h3>
+                            <p>Find the most auspicious time for important life events and ceremonies.</p>
+                        </div>
+                        <div class="service-footer">
+                             <span class="duration">30 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                 <div class="cta-box">
+                    <h2>Not Sure Which Service You Need?</h2>
+                    <p>Get a free consultation call to understand which astrological service would be most beneficial for your current situation.</p>
+                    <a href="#" class="btn" style="background-color: white; color: #8c3a3a; border: 1px solid #8c3a3a;">Get Free Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                     <div class="logo-footer">
+                        <div class="star-icon">
+                           <i class="fas fa-star"></i>
+                        </div>
+                        <span>Astro Khushi</span>
+                    </div>
+                    <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine destiny with personalized astrological consultations and spiritual guidance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Khushi</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Free Horoscope</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-info">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center, Delhi, India 110001</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2024 Astro Khushi. All rights reserved. | Vedic Astrology Services</div>
+                <div>
