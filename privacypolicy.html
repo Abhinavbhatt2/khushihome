@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Terms - Astro Khushi</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f5e9d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #941a1d;
+            margin-right: 15px;
+        }
+
+        .logo-text h1 {
+            margin: 0;
+            color: #941a1d;
+            font-size: 24px;
+        }
+
+        .logo-text p {
+            margin: 0;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav li {
+            margin-left: 25px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #941a1d;
+            font-weight: 500;
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #6d1315;
+            border-bottom: 2px solid #941a1d;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-contact .phone-number {
+            color: #333;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+        
+        .header-contact .phone-number i {
+            color: #941a1d;
+        }
+
+        .header-contact .btn {
+            background-color: #941a1d;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .header-contact .btn:hover {
+            background-color: #7a1618;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: #941a1d;
+            cursor: pointer;
+        }
+
+        /* Main Content Styles */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.7;
+        }
+
+        .content-wrapper h1 {
+            color: #941a1d;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .content-wrapper h2 {
+            color: #333;
+            border-left: 4px solid #941a1d;
+            padding-left: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .content-wrapper p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .content-wrapper p strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            background-color: #5c2121; /* Dark red from image */
+            color: #f0f0f0;
+            padding: 50px 0 0;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            margin: 0 15px 30px;
+            min-width: 250px;
+        }
+
+        .footer-col-about .logo-container {
+            margin-bottom: 20px;
+        }
+        .footer-col-about .logo-icon {
+             background-color: #f5e9d9;
+             color: #5c2121;
+        }
+         .footer-col-about .logo-text h3 {
+             color: #fff;
+             margin: 0;
+             font-size: 22px;
+         }
+        .footer-col-about .logo-text p {
+             color: #ccc;
+             margin: 0;
+             font-size: 14px;
+        }
+        .footer-col-about > p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin-right: 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #f5e9d9;
+        }
+
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col ul a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+        .footer-col ul a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+        
+        .footer-contact-info li {
+            display: flex;
+            align-items: flex-start;
+            color: #ccc;
+        }
+        .footer-contact-info i {
+            margin-right: 10px;
+            margin-top: 4px;
+            width: 20px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #773a3a;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .footer-bottom-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        
+        .footer-legal a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+        .footer-legal a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .main-nav, .header-contact {
+                display: none;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .main-header {
+                flex-wrap: wrap;
+            }
+            .main-nav.active {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                background-color: #fff;
+                padding: 10px 0;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            .main-nav li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .header-contact.active {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                margin-top: 15px;
+            }
+            .header-contact .phone-number {
+                margin: 0 0 15px 0;
+            }
+            .footer-bottom-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-legal {
+                margin-top: 10px;
+            }
+             .footer-legal a {
+                margin: 0 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 20px;
+            }
+             .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .content-wrapper h1 {
+                font-size: 2em;
+            }
+             .content-wrapper h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="logo-icon">CK</div>
+            <div class="logo-text">
+                <h1>Astro Khushi</h1>
+                <p>Vedic Astrology</p>
+            </div>
+        </div>
+        <nav class="main-nav" id="mainNav">
+             <ul>
+                <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+                <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                <li><a href="https://khushiastrologer.com/about.html">About</a></li>
+                <li><a href="https://khushiastrologer.com/course.html">Course</a></li>
+                <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-contact" id="headerContact">
+            <span class="phone-number"><i class="fas fa-phone"></i> +91 8700030288</span>
+            <a href="#contact" class="btn">Get Consultation</a>
+        </div>
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <h1>Privacy Policy & Terms</h1>
+
+        <h2>Privacy Policy</h2>
+        <p>This policy explains how Khushi Astrologer collects, uses, and protects your data when you browse the site, enroll in courses, or book sessions.</p>
+        <p><strong>Data collected:</strong> Name, email, phone, WhatsApp opt-in, billing details, course progress metrics, device/IP, and cookies for analytics. No payment card data is stored on our servers.</p>
+        <p><strong>Purpose:</strong> Account creation, order fulfillment, course delivery, certification, customer support, reminders, and marketing with consent.</p>
+        <p><strong>Legal basis:</strong> Consent, contract performance, and legitimate interests for service improvement and fraud prevention.</p>
+        <p><strong>Third parties:</strong> Payment gateways, video hosting, email/WhatsApp providers, analytics platforms—only minimal data shared under agreements.</p>
+        <p><strong>Cookies:</strong> Used for login sessions, cart, and analytics; you can control cookies via browser settings which may impact functionality.</p>
+        <p><strong>Data rights:</strong> Request access, correction, deletion, or withdrawal of consent by emailing privacy@khushiastrologer.com; identity verification may be required.</p>
+        <p><strong>Security:</strong> Industry-standard encryption in transit, role-based access, and periodic audits; no method is 100% secure.</p>
+        <p><strong>Data retention:</strong> Kept as long as needed for services, legal, and tax compliance, then securely deleted or anonymized.</p>
+        <p><strong>Jurisdiction:</strong> Operations are India-based; cross-border processing may occur with safeguards.</p>
+        <p><strong>Contact:</strong> privacy@khushiastrologer.com | Contact page. Updates to this policy will be posted with revision dates.</p>
+
+        <h2>Terms & Conditions</h2>
+        <p>By using Khushi Astrologer, enrolling in courses, or booking services, you agree to these terms.</p>
+        <p><strong>Services:</strong> Educational courses, workshops, and guidance in astrology and tarot; outcomes are not guaranteed and content is for educational/informational purposes only.</p>
+        <p><strong>Account:</strong> You are responsible for account security and not sharing credentials or paid materials publicly.</p>
+        <p><strong>Payments:</strong> Prices are listed in INR unless stated; taxes may apply. Orders are confirmed on successful payment authorization.</p>
+        <p><strong>Intellectual property:</strong> All videos, PDFs, slides, and course structures are owned by Khushi Astrologer; no reproduction, resale, or redistribution without written consent.</p>
+        <p><strong>Conduct:</strong> Respectful participation in communities and live sessions; disruptive behavior can lead to removal without refund.</p>
+        <p><strong>Certificates:</strong> Issued upon meeting completion criteria announced per course; identity verification may be required.</p>
+        <p><strong>Disclaimers:</strong> No medical, legal, or financial advice; users must exercise personal judgment and seek professional counsel where needed.</p>
+        <p><strong>Limitation of liability:</strong> To the maximum extent permitted by law, liability is limited to the amount paid for the service in dispute.</p>
+        <p><strong>Governing law:</strong> These terms are governed by the laws of India, courts at New Delhi shall have jurisdiction.</p>
+        <p><strong>Changes:</strong> Terms may be updated; continued use after changes constitutes acceptance.</p>
+        <p><strong>Contact:</strong> contact@khushiastrologer.com | Contact page</p>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col footer-col-about">
+                <div class="logo-container">
+                    <div class="logo-icon">CK</div>
+                    <div class="logo-text">
+                        <h3>Astro Khushi</h3>
+                        <p>Vedic Astrology Expert</p>
+                    </div>
+                </div>
+                <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Khushi</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Free Horoscope</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-contact-info">
+                    <li><i class="fas fa-phone"></i> +918700030288</li>
+                    <li><i class="fas fa-envelope"></i> contact@astrokhushi.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center, Delhi, India 110001</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2024 Astro Khushi. All rights reserved. | Vedic Astrology Services</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+            document.getElementById('headerContact').classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
