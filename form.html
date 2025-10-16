@@ -532,16 +532,16 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Course</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="https://khushiastrologer.com/index.html" class="active">Home</a></li>
+                    <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                    <li><a href="https://khushiastrologer.com/about.html">About</a></li>
+                    <li><a href="https://khushiastrologer.com/course.html">Course</a></li>
+                    <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-contact">
                 <span><i class="fas fa-phone-alt"></i> +91 8700030288</span>
-                <a href="#" class="get-consultation-btn">Get Consultation</a>
+                <a href="https://khushiastrologer.com/contact.html" class="get-consultation-btn">Get Consultation</a>
             </div>
         </div>
     </header>
@@ -613,12 +613,12 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About Khushi</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Free Horoscope</a></li>
-                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+                    <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                    <li><a href="https://khushiastrologer.com/about.html">About Khushi</a></li>
+                    <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+                    <li><a href="#">Free Horoscope</a></li> <!-- Placeholder if no specific page for this -->
+                    <li><a href="#">Testimonials</a></li> <!-- Placeholder if no specific page for this -->
                 </ul>
             </div>
 
@@ -646,6 +646,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('consultationForm');
             const formMessage = document.getElementById('form-message');
+
+            // --- Your Google Apps Script Web App URL ---
+            const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzN9rshRcfoscSIrCG-adLMwN8oYwsFkgrLpjwR8ykcpaY1Jrz6KjoT2lS1E802JNWZwg/exec';
+            // ------------------------------------------
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault(); // Prevent default form submission
@@ -693,11 +697,6 @@
                     const formData = new FormData(form);
                     const data = {};
                     formData.forEach((value, key) => (data[key] = value));
-
-                    // THIS IS THE PLACE WHERE YOU CONNECT TO GOOGLE SHEETS
-                    // You would typically use Google Apps Script for this.
-                    // Example: Deploy a Google Apps Script as a Web App, and its URL will be your endpoint.
-                    const GOOGLE_SHEET_WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL'; // <--- IMPORTANT: Replace this
 
                     fetch(GOOGLE_SHEET_WEB_APP_URL, {
                         method: 'POST',
