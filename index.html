@@ -69,6 +69,10 @@
             border: none;
             cursor: pointer;
         }
+        .btn:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
 
         .btn:hover {
             background-color: #6a0b0b;
@@ -140,19 +144,10 @@
             font-weight: 700;
             color: var(--primary-color);
         }
-
-        .logo .logo-icon {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-weight: bold;
-            font-size: 1.2rem;
+        
+        /* UPDATED LOGO STYLE */
+        .logo .logo-img {
+            height: 50px; /* Adjust height as needed */
             margin-right: 10px;
         }
 
@@ -539,7 +534,7 @@
             font-size: 0.9em;
         }
 
-        /* NEW: Mentor Section */
+        /* Mentor Section */
         .mentor {
             padding: 80px 0;
             background-color: var(--cream-bg);
@@ -573,7 +568,7 @@
             margin-bottom: 20px;
         }
 
-        /* NEW: Worked With Section */
+        /* Worked With Section */
         .worked-with {
             padding: 60px 0;
             background-color: var(--light-cream);
@@ -599,7 +594,7 @@
             opacity: 1;
         }
 
-        /* NEW: Awards Section */
+        /* Awards Section */
         .awards {
             padding: 80px 0;
             background-color: var(--white-color);
@@ -632,7 +627,7 @@
             color: var(--light-text-color);
         }
         
-        /* NEW: Podcast Section */
+        /* Podcast Section */
         .podcast {
             padding: 80px 0;
             background-color: var(--cream-bg);
@@ -975,7 +970,8 @@
     <header class="header">
         <div class="container">
             <a href="#" class="logo">
-                <div class="logo-icon">CK</div>
+                <!-- UPDATED LOGO -->
+                <img src="FINAL LOGO.png" alt="Astro Khushi Logo" class="logo-img">
                 <div class="logo-text">
                     Astro Khushi
                     <span>Vedic Astrology</span>
@@ -985,16 +981,16 @@
             <nav class="main-nav">
                 <div class="nav-links">
                     <ul>
-                        <li><a href="https://khushiastrologer.com/index.html" class="active">Home</a></li>
-                        <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
-                        <li><a href="https://khushiastrologer.com/about.html">About</a></li>
-                        <li><a href="https://khushiastrologer.com/course.htmlt">Course</a></li>
-                        <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+                        <li><a href="home.html" class="active">Home</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="course.html">Courses </a></li>
+                        <li><a href="form.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="header-contact">
-                    <span class="phone-number"><i class="fas fa-phone"></i> +91 8700030288</span>
-                    <a href="#contact" class="btn">Get Consultation</a>
+                    <span class="phone-number"><i class="fas fa-phone"></i> +91 8700030288 </span>
+                    <a href="form.html" class="btn">Get Consultation</a>
                 </div>
             </nav>
             
@@ -1004,15 +1000,15 @@
         </div>
         <div class="mobile-nav-menu">
              <ul>
-                <li><a href="https://khushiastrologer.com/index.html" class="active">Home</a></li>
-                        <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
-                        <li><a href="https://khushiastrologer.com/about.html">About</a></li>
-                        <li><a href="https://khushiastrologer.com/course.html">Course</a></li>
-                        <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="course.html">course</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
              <div class="header-contact">
                 <span class="phone-number"><i class="fas fa-phone"></i> +91 8700030288</span>
-                <a href="#contact" class="btn">Get Consultation</a>
+                <a href="form.html" class="btn">Get Consultation</a>
             </div>
         </div>
     </header>
@@ -1024,7 +1020,7 @@
                 <div class="badge"><i class="fas fa-star"></i> Trusted by 10,000+ People</div>
                 <h1>Discover Your<br><span>Divine Destiny</span><br>with Vedic Wisdom</h1>
                 <p>Unlock the secrets of your future through ancient Vedic astrology. Get personalized horoscope readings, birth chart analysis, and spiritual guidance from expert astrologer Khushi.</p>
-                <a href="#" class="btn btn-secondary">Get Free Reading</a>
+                <a href="form.html" class="btn btn-secondary">Get Free Reading</a>
                 <div class="hero-stats">
                     <div class="stat">
                         <strong>15+</strong>
@@ -1052,35 +1048,35 @@
                 <div class="services-grid">
                      <div class="service-card">
                         <div><div class="icon"><i class="fas fa-star"></i></div><h4>Birth Chart Reading</h4><p>Complete analysis of your birth chart (Kundali) with planetary positions and their effects on your life.</p></div>
-                        <div class="service-card-footer"><span class="duration">45 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">45 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-briefcase"></i></div><h4>Career Guidance</h4><p>Discover your ideal career path and professional success through astrological insights.</p></div>
-                        <div class="service-card-footer"><span class="duration">60 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">60 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-heart"></i></div><h4>Love & Relationships</h4><p>Find compatibility, resolve relationship issues, and discover your soulmate through Vedic matching.</p></div>
-                        <div class="service-card-footer"><span class="duration">50 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">50 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-coins"></i></div><h4>Financial Astrology</h4><p>Get insights on wealth, investments, and financial growth based on planetary influences.</p></div>
-                        <div class="service-card-footer"><span class="duration">45 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">45 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                      <div class="service-card">
                         <div><div class="icon"><i class="fas fa-child"></i></div><h4>Child Astrology</h4><p>Name suggestions, future predictions, and guidance for your child's bright future.</p></div>
-                        <div class="service-card-footer"><span class="duration">40 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">40 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-home"></i></div><h4>Vastu Consultation</h4><p>Home and office Vastu guidance to bring positive energy and prosperity.</p></div>
-                        <div class="service-card-footer"><span class="duration">75 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">75 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-building"></i></div><h4>Business Astrology</h4><p>Launch dates, partnership compatibility, and business growth strategies.</p></div>
-                        <div class="service-card-footer"><span class="duration">90 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">90 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                     <div class="service-card">
                         <div><div class="icon"><i class="fas fa-calendar-check"></i></div><h4>Muhurat Selection</h4><p>Find the most auspicious time for important life events and ceremonies.</p></div>
-                        <div class="service-card-footer"><span class="duration">30 mins</span><a href="#" class="btn">Book Now</a></div>
+                        <div class="service-card-footer"><span class="duration">30 mins</span><a href="form.html" class="btn">Book Now</a></div>
                     </div>
                 </div>
             </div>
@@ -1112,7 +1108,7 @@
             </div>
         </section>
 
-        <!-- NEW: Mentor Section -->
+        <!-- Mentor Section -->
         <section class="mentor">
             <div class="container">
                  <div class="mentor-content">
@@ -1123,13 +1119,13 @@
                         <h2>Meet Your Mentor,<br><span>Khushi</span></h2>
                         <p>With a heart full of compassion and a mind steeped in the ancient texts, Khushi bridges the gap between cosmic knowledge and modern life. Her intuitive approach helps demystify complex astrological concepts, making them accessible and practical for everyone.</p>
                         <p>She believes that astrology is not about rigid predictions, but about empowerment—giving you the tools to understand your strengths, navigate your challenges, and consciously create a life aligned with your soul's purpose.</p>
-                        <a href="#contact" class="btn">Consult with Khushi</a>
+                        <a href="form.html" class="btn">Consult with Khushi</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NEW: Worked With Section -->
+        <!-- Worked With Section -->
         <section class="worked-with">
             <div class="container">
                 <div class="section-header">
@@ -1143,7 +1139,7 @@
             </div>
         </section>
 
-        <!-- NEW: Awards Section -->
+        <!-- Awards Section -->
         <section id="awards" class="awards">
             <div class="container">
                 <div class="section-header">
@@ -1175,7 +1171,7 @@
             </div>
         </section>
 
-        <!-- NEW: Podcast Section -->
+        <!-- Podcast Section -->
         <section id="podcast" class="podcast">
             <div class="container">
                 <div class="section-header">
@@ -1183,18 +1179,10 @@
                     <p>Tune in to our podcast where we explore cosmic insights, planetary transits, and spiritual wisdom to guide your journey.</p>
                 </div>
                 <div class="podcast-grid">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/P-y5b-hhS44" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-container">
-                         <iframe src="https://www.youtube.com/embed/d-nxWdAWuFs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-container">
-                         <iframe src="https://www.youtube.com/embed/m7k4-h2sS6g" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/P-y5b-hhS44" title="YouTube video player" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/d-nxWdAWuFs" title="YouTube video player" allowfullscreen></iframe></div>
+                    <div class="video-container"><iframe src="https://www.youtube.com/embed/m7k4-h2sS6g" title="YouTube video player" allowfullscreen></iframe></div>
                 </div>
             </div>
         </section>
@@ -1209,17 +1197,34 @@
                 <div class="contact-content">
                     <div class="booking-form">
                         <h3><i class="fas fa-pen-to-square"></i> Book Your Consultation</h3>
-                        <form>
-                            <div class="form-row"><div class="form-group"><label for="full-name">Full Name *</label><input type="text" id="full-name" name="full-name" placeholder="Enter your full name"></div><div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" placeholder="+918700030288"></div></div>
-                            <div class="form-row"><div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="your.email@example.com"></div><div class="form-group"><label for="dob">Date of Birth *</label><input type="text" id="dob" name="dob" placeholder="mm/dd/yyyy" onfocus="(this.type='date')"></div></div>
-                             <div class="form-row"><div class="form-group"><label for="tob">Time of Birth</label><input type="text" id="tob" name="tob" placeholder="--:-- --" onfocus="(this.type='time')"></div><div class="form-group"><label for="pob">Place of Birth</label><input type="text" id="pob" name="pob" placeholder="City, State, Country"></div></div>
-                            <div class="form-group"><label for="service">Service Required *</label><select id="service" name="service"><option value="">Select a service</option><option value="birth-chart">Birth Chart Reading</option><option value="career">Career Guidance</option><option value="love">Love & Relationships</option></select></div>
-                            <div class="form-group"><label for="concerns">Questions/Concerns</label><textarea id="concerns" name="concerns" placeholder="Please share your specific questions or areas of concern..."></textarea></div>
+                        <form name="submit-to-google-sheet">
+                            <div class="form-row">
+                                <div class="form-group"><label for="full-name">Full Name *</label><input type="text" id="full-name" name="Name" placeholder="Enter your full name" required></div>
+                                <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="Mobile No" placeholder="+918700030288" required></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="Email" placeholder="your.email@example.com" required></div>
+                                <div class="form-group"><label for="dob">Date of Birth *</label><input type="text" id="dob" name="Date of Birth" placeholder="mm/dd/yyyy" onfocus="(this.type='date')" required></div>
+                            </div>
+                             <div class="form-row">
+                                <div class="form-group"><label for="tob">Time of Birth</label><input type="text" id="tob" name="Time of Birth" placeholder="--:--" onfocus="(this.type='time')"></div>
+                                <div class="form-group"><label for="pob">Place of Birth</label><input type="text" id="pob" name="Place of Birth" placeholder="City, State, Country"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service Required *</label>
+                                <select id="service" name="Service Required" required>
+                                    <option value="">Select a service</option><option value="Birth Chart Reading">Birth Chart Reading</option><option value="Career Guidance">Career Guidance</option><option value="Love & Relationships">Love & Relationships</option><option value="Financial Astrology">Financial Astrology</option><option value="Child Astrology">Child Astrology</option><option value="Vastu Consultation">Vastu Consultation</option><option value="Business Astrology">Business Astrology</option><option value="Muhurat Selection">Muhurat Selection</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="concerns">Questions/Concerns</label>
+                                <textarea id="concerns" name="Questions/Concerns" placeholder="Please share your specific questions or areas of concern..."></textarea>
+                            </div>
                             <button type="submit" class="btn"><i class="fas fa-paper-plane"></i>Book Consultation</button>
                         </form>
                     </div>
                     <div class="contact-info-cards">
-                        <div class="info-card"><h4>Call Us</h4><div class="item"><i class="fas fa-phone"></i><div><a href="tel:+91 8700030288">+91 8700030288</a><br><a href="tel:+918700030288">+91 8700030288</a><br><span>Available 9 AM - 9 PM (IST)</span></div></div></div>
+                        <div class="info-card"><h4>Call Us</h4><div class="item"><i class="fas fa-phone"></i><div><a href="tel:+918700030288">+91 98765 43210</a><br><a href="tel:+918700030288">+91 8700030288</a><br><span>Available 9 AM - 9 PM (IST)</span></div></div></div>
                         <div class="info-card"><h4>Email Us</h4><div class="item"><i class="fas fa-envelope"></i><div><a href="mailto:contact@astrokhushi.com">contact@astrokhushi.com</a><br><a href="mailto:consultations@astrokhushi.com">consultations@astrokhushi.com</a><br><span>We reply within 24 hours</span></div></div></div>
                         <div class="info-card"><h4>Visit Us</h4><div class="item"><i class="fas fa-map-marker-alt"></i><div>123 Spiritual Center<br>Delhi, India 110001<br><span>By appointment only</span></div></div></div>
                          <div class="info-card"><h4>Consultation Hours</h4><div class="item"><i class="fas fa-clock"></i><div>Mon - Sat: 9 AM - 9 PM<br>Sunday: 10 AM - 6 PM<br><span>All times in IST</span></div></div></div>
@@ -1235,20 +1240,24 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <a href="#" class="logo"><div class="logo-icon">CK</div><div class="logo-text">Astro Khushi<span>Vedic Astrology Expert</span></div></a>
+                    <a href="#" class="logo">
+                        <!-- UPDATED LOGO -->
+                        <img src="FINAL LOGO.png" alt="Astro Khushi Logo" class="logo-img">
+                        <div class="logo-text">Astro Khushi<span>Vedic Astrology Expert</span></div>
+                    </a>
                     <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
                     <div class="social-links"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#about">About Khushi</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Free Horoscope</a></li><li><a href="#">Testimonials</a></li>
+                        <li><a href="index.html">Home</a></li><li><a href="service.html">Services</a></li><li><a href="about.html">About Khushi</a></li><li><a href="contact.html">Contact</a></li><li><a href="form.html">Free Horoscope</a></li><li></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h4>Contact Info</h4>
                     <ul>
-                        <li class="item"><i class="fas fa-phone"></i><a href="tel:+918700030288">+918700030288</a></li>
+                        <li class="item"><i class="fas fa-phone"></i><a href="tel:+918700030288">+91 8700030288</a></li>
                         <li class="item"><i class="fas fa-envelope"></i><a href="mailto:contact@astrokhushi.com">contact@astrokhushi.com</a></li>
                         <li class="item"><i class="fas fa-map-marker-alt"></i>123 Spiritual Center<br>Delhi, India 110001</li>
                     </ul>
@@ -1256,14 +1265,15 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Astro Khushi. All rights reserved. | Vedic Astrology Services</p>
-                <div class="legal-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Disclaimer</a></div>
+                <div class="legal-links"><a href="privacypolicy.html">Privacy Policy</a><a href="TermsCondition.html">Terms of Service</a><a href="refundpolicy.html">Refund Policy</a></div>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu -->
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.querySelector('.mobile-nav-menu');
 
@@ -1276,6 +1286,32 @@
                 link.addEventListener('click', () => {
                      mobileMenu.classList.remove('active');
                 });
+            });
+
+            // Google Sheet Form Submission
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzN9rshRcfoscSIrCG-adLMwN8oYwsFkgrLpjwR8ykcpaY1Jrz6KjoT2lS1E802JNWZwg/exec';
+            const form = document.forms['submit-to-google-sheet'];
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => {
+                        alert('Success! Your consultation request has been submitted.');
+                        form.reset();
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Book Consultation';
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert('Error! Could not submit your request. Please try again.');
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Book Consultation';
+                    });
             });
         });
     </script>
