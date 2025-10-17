@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Khushi - Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7A2E2E; /* Dark Red */
+            --secondary-color: #B23A3A; /* Slightly lighter red */
+            --text-color: #333;
+            --light-bg: #f8f8f8;
+            --white-color: #fff;
+            --link-hover-color: #E0E0E0;
+            --phone-number-color: #5A2A8A; /* Original phone color, can be adjusted */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Bar - if you want one above the header */
+        .top-bar {
+            background-color: #333; /* Darker bar as in the reference image */
+            height: 30px; /* Adjust height as needed */
+            width: 100%;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white-color); /* White background for header */
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+
+        .header-left img {
+            width: 50px; /* Adjust logo size */
+            height: 50px;
+            border-radius: 50%; /* Makes it circular */
+            margin-right: 10px;
+        }
+
+        .header-left .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .header-left .logo-text h1 {
+            margin: 0;
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+
+        .header-left .logo-text p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        nav {
+            flex-grow: 1; /* Allows navigation to take available space */
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a.active,
+        nav ul li a:hover {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            padding-right: 20px;
+        }
+
+        .header-right .phone-info {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--text-color);
+            font-size: 0.95em;
+        }
+
+        .header-right .phone-info i {
+            margin-right: 5px;
+            color: var(--primary-color); /* Match theme */
+        }
+
+        .get-consultation-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-decoration: none; /* Make it look like a link */
+            transition: background-color 0.3s ease;
+        }
+
+        .get-consultation-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Main Content - Course Cards */
+        .container {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background-color: var(--white-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: var(--secondary-color); /* Lighter red for card header */
+            color: var(--white-color);
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-body ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+        }
+
+        .card-body ul li {
+            margin-bottom: 5px;
+        }
+
+        .card-footer {
+            padding: 15px;
+            text-align: center;
+            background-color: var(--light-bg);
+            border-top: 1px solid #eee;
+        }
+
+        .card-footer button {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-footer button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color); /* Dark red for footer */
+            color: var(--white-color);
+            padding: 40px 20px; /* Increased padding */
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping */
+            justify-content: space-between;
+            align-items: flex-start; /* Align items to the top */
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto 0 auto; /* Center footer */
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px; /* Ensure sections don't get too narrow */
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-section h3 {
+            color: var(--white-color);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--white-color);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .footer-logo .logo-text h2 {
+            margin: 0;
+            font-size: 1.6em;
+            color: var(--white-color);
+        }
+        .footer-logo .logo-text p {
+            margin: 0;
+            font-size: 0.9em;
+            color: var(--light-bg);
+        }
+
+        .footer-section p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: var(--light-bg);
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+        .social-icons a {
+            color: var(--white-color);
+            font-size: 1.3em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        .footer-section ul li a {
+            color: var(--light-bg);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+        .footer-section ul li a:hover {
+            color: var(--white-color);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--light-bg);
+        }
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--white-color);
+            font-size: 1.1em;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+            font-size: 0.85em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-bottom .copyright {
+            margin-bottom: 10px;
+            color: var(--light-bg);
+        }
+        .footer-bottom .policy-links a {
+            color: var(--light-bg);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-bottom .policy-links a:hover {
+            color: var(--white-color);
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            header, footer {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+            .header-left, .header-right {
+                padding: 0;
+                margin-bottom: 15px;
+                width: 100%;
+                justify-content: center; /* Center items on small screens */
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li a {
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            .header-right {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .header-right .phone-info {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .get-consultation-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-section {
+                padding: 0 10px;
+                min-width: unset;
+                width: 100%;
+            }
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .footer-logo {
+                justify-content: center;
+            }
+            .social-icons {
+                margin-top: 10px;
+            }
+            .social-icons a {
+                margin: 0 8px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                padding-top: 15px;
+            }
+            .footer-bottom .copyright {
+                margin-bottom: 15px;
+            }
+            .footer-bottom .policy-links {
+                display: flex;
+                flex-direction: column;
+            }
+            .footer-bottom .policy-links a {
+                margin: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr; /* Single column for very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div>
+
+    <header>
+        <div class="header-left">
+            <img src="https://khushiastrologer.com/img/logo.webp" alt="Astro Khushi Logo"> <!-- Placeholder logo path -->
+            <div class="logo-text">
+                <h1>Astro Khushi</h1>
+                <p>Vedic Astrology</p>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+                <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                <li><a href="https://khushiastrologer.com/about.html">About</a></li>
+                <li><a href="https://khushiastrologer.com/course.html" class="active">Courses</a></li>
+                <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-right">
+            <span class="phone-info">
+                <i class="fas fa-phone-alt"></i> +91 8700030288
+            </span>
+            <a href="https://khushiastrologer.com/contact.html" class="get-consultation-btn">Get Consultation</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Course Card 1: Tarot Card Reading -->
+        <div class="course-card" id="tarot-card">
+            <div class="card-header">
+                Tarot Card Reading
+            </div>
+            <div class="card-body">
+                <p>Unlock the mysteries of the Tarot with our comprehensive courses. Learn to interpret cards, spreads, and gain profound insights into life's questions.</p>
+                <ul>
+                    <li>Basic Tarot Reading</li>
+                    <li>Advanced Tarot Techniques</li>
+                </ul>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Card 2: Numerology -->
+        <div class="course-card" id="numerology-card">
+            <div class="card-header">
+                Numerology
+            </div>
+            <div class="card-body">
+                <p>Discover the power of numbers and their influence on your destiny. Our Numerology courses cover basic calculations and advanced interpretations.</p>
+                <ul>
+                    <li>Basic Numerology Concepts</li>
+                    <li>Advanced Numerology Analysis</li>
+                </ul>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Card 3: Angels -->
+        <div class="course-card" id="angels-card">
+            <div class="card-header">
+                Angels
+            </div>
+            <div class="card-body">
+                <p>Connect with the angelic realm and learn how to receive guidance and healing from divine beings. Explore different types of angels and their messages.</p>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Card 4: Runes -->
+        <div class="course-card" id="runes-card">
+            <div class="card-header">
+                Runes
+            </div>
+            <div class="card-body">
+                <p>Delve into the ancient wisdom of Runes. Learn their meanings, how to cast them for divination, and use them for personal guidance and insight.</p>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Card 5: Rules Casting -->
+        <div class="course-card" id="rules-casting-card">
+            <div class="card-header">
+                Rules Casting
+            </div>
+            <div class="card-body">
+                <p>Master the art of Rules Casting for specific divination and guidance. This course will teach you the techniques and interpretations for effective readings.</p>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Card 6: Candle Healing Therapy -->
+        <div class="course-card" id="candle-healing-card">
+            <div class="card-header">
+                Candle Healing Therapy
+            </div>
+            <div class="card-body">
+                <p>Experience the therapeutic power of candles. Learn how to use candle magic and color therapy for healing, manifestation, and spiritual well-being.</p>
+                <div class="card-footer">
+                    <button onclick="location.href='form.html'">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-section">
+            <div class="footer-logo">
+                <img src="https://khushiastrologer.com/img/logo.webp" alt="Astro Khushi Logo"> <!-- Placeholder logo path -->
+                <div class="logo-text">
+                    <h2>Astro Khushi</h2>
+                    <p>Vedic Astrology Expert</p>
+                </div>
+            </div>
+            <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+                <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                <li><a href="https://khushiastrologer.com/about.html">About Khushi</a></li>
+                <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+                <li><a href="#">Free Horoscope</a></li> <!-- Placeholder for Free Horoscope link -->
+            </ul>
+        </div>
+
+        <div class="footer-section contact-info">
+            <h3>Contact Info</h3>
+            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+            <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2024 Astro Khushi. All rights reserved. | Vedic Astrology Services
+            </div>
+            <div class="policy-links">
+                <a href="privacypolicy.html">Privacy Policy</a>
+                <a href="TermsCondition.html">Terms of Service</a>
+                <a href="refundpolicy.html">Refund Policy</a>
+                <a href="shippingpolicy.html">Shipping Policy</a> <!-- New Shipping Policy Link -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // The enrollCourse function is no longer needed as buttons directly link to form.html
+        // function enrollCourse(courseName) {
+        //     alert('You are interested in the "' + courseName + '" course! We will redirect you to the enrollment page soon.');
+        //     // window.location.href = 'enrollment.html?course=' + encodeURIComponent(courseName);
+        // }
+    </script>
+</body>
+</html>
