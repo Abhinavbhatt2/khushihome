@@ -3,464 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushi Astrologer - Courses</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Khushi Astrologer - Our Courses</title>
+    <!-- Importing a font from Google Fonts that matches the design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (phone, social media, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
+        /* --- General & Body Styling --- */
         :root {
-            --primary-color: #7A2E2E; /* Dark Red */
-            --secondary-color: #B23A3A; /* Slightly lighter red */
-            --text-color: #333;
-            --light-bg: #f8f8f8;
-            --white-color: #fff;
-            --link-hover-color: #E0E0E0;
-            --phone-number-color: #5A2A8A; /* Original phone color, can be adjusted */
+            --primary-color: #8C1C13; /* A deep, rich red from the images */
+            --text-color-light: #f4f4f4;
+            --text-color-dark: #333;
+            --background-light: #ffffff;
+            --footer-bg: #3A0303; /* A darker shade for the footer background */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color-dark);
+            background-color: var(--background-light);
         }
 
-        /* Top Bar - if you want one above the header */
-        .top-bar {
-            background-color: #333; /* Darker bar as in the reference image */
-            height: 30px; /* Adjust height as needed */
-            width: 100%;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        /* Header Styles */
-        header {
-            background-color: var(--white-color); /* White background for header */
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* --- Header Styling --- */
+        .site-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            padding: 15px 5%;
+            background-color: var(--background-light);
+            border-bottom: 1px solid #ddd;
         }
 
-        .header-left {
+        .logo-container {
             display: flex;
             align-items: center;
-            padding-left: 20px;
+        }
+        
+        /* Updated to style the new img tag */
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
         }
 
-        .header-left img {
-            width: 50px; /* Adjust logo size */
-            height: 50px;
-            border-radius: 50%; /* Makes it circular */
-            margin-right: 10px;
-        }
-
-        .header-left .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .header-left .logo-text h1 {
-            margin: 0;
-            font-size: 1.5em;
+        .logo-text h1 {
             color: var(--primary-color);
-        }
-
-        .header-left .logo-text p {
+            font-family: 'Lora', serif;
+            font-size: 24px;
             margin: 0;
-            font-size: 0.9em;
-            color: #666;
         }
 
-        nav {
-            flex-grow: 1; /* Allows navigation to take available space */
-            text-align: center;
+        .logo-text p {
+            font-size: 14px;
+            color: #777;
+            margin: 0;
         }
-
-        nav ul {
+        
+        .main-nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            gap: 30px;
         }
 
-        nav ul li a {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-            transition: color 0.3s ease, border-bottom 0.3s ease;
+        .main-nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color-dark);
+            padding-bottom: 5px;
             position: relative;
         }
 
-        nav ul li a.active,
-        nav ul li a:hover {
+        .main-nav a.active, .main-nav a:hover {
             color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            padding-right: 20px;
-        }
-
-        .header-right .phone-info {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-            color: var(--text-color);
-            font-size: 0.95em;
-        }
-
-        .header-right .phone-info i {
-            margin-right: 5px;
-            color: var(--primary-color); /* Match theme */
-        }
-
-        .get-consultation-btn {
+        /* This class indicates the current page */
+        .main-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -18px; /* Adjusted for alignment */
+            left: 0;
+            width: 100%;
+            height: 2px;
             background-color: var(--primary-color);
-            color: var(--white-color);
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .phone-number {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color-dark);
+        }
+
+        .phone-number i {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 12px 25px;
             border: none;
-            padding: 10px 20px;
             border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 0.9em;
-            text-decoration: none; /* Make it look like a link */
             transition: background-color 0.3s ease;
+            display: inline-block; /* To make it behave like a link */
         }
 
-        .get-consultation-btn:hover {
-            background-color: var(--secondary-color);
+        .cta-button:hover {
+            background-color: #6d150f;
         }
 
-        /* Main Content - Course Cards */
-        .container {
-            flex-grow: 1;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
+        /* --- Main Content: Courses Section --- */
+        .courses-section {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .courses-section h2 {
+            font-family: 'Lora', serif;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .courses-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .course-card {
-            background-color: var(--white-color);
+            background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             overflow: hidden;
-            transition: transform 0.2s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .course-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
-
-        .card-header {
-            background-color: var(--secondary-color); /* Lighter red for card header */
-            color: var(--white-color);
-            padding: 15px;
-            font-size: 1.2em;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-body p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .card-body ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            padding: 0;
-        }
-
-        .card-body ul li {
-            margin-bottom: 5px;
-        }
-
-        .card-footer {
-            padding: 15px;
-            text-align: center;
-            background-color: var(--light-bg);
-            border-top: 1px solid #eee;
-        }
-
-        .card-footer button {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .card-footer button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* Footer Styles */
-        footer {
-            background-color: var(--primary-color); /* Dark red for footer */
-            color: var(--white-color);
-            padding: 40px 20px; /* Increased padding */
-            margin-top: auto;
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping */
-            justify-content: space-between;
-            align-items: flex-start; /* Align items to the top */
-            max-width: 1200px;
+        
+        .course-card img {
             width: 100%;
-            margin: 20px auto 0 auto; /* Center footer */
+            height: 200px;
+            object-fit: cover;
+            display: block;
         }
 
-        .footer-section {
+        .course-card h3 {
+            font-family: 'Lora', serif;
+            padding: 20px;
+            font-size: 18px;
+            color: var(--text-color-dark);
+            margin: 0;
+        }
+
+        /* --- Footer Styling --- */
+        .site-footer {
+            background-color: var(--footer-bg);
+            color: var(--text-color-light);
+            padding: 60px 5% 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #555;
+        }
+
+        .footer-column {
             flex: 1;
-            min-width: 250px; /* Ensure sections don't get too narrow */
-            margin-bottom: 20px;
-            padding: 0 15px;
+            min-width: 250px;
         }
 
-        .footer-section h3 {
-            color: var(--white-color);
-            font-size: 1.2em;
-            margin-bottom: 15px;
+        .footer-about .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .footer-about .logo-text h1 {
+            color: var(--text-color-light); /* Override header color */
+        }
+
+        .footer-about p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: var(--text-color-light);
+            font-size: 20px;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #e44d26; /* A brighter accent color on hover */
+        }
+
+        .footer-column h3 {
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            margin-bottom: 20px;
             position: relative;
         }
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 50px;
-            height: 2px;
-            background-color: var(--white-color);
-        }
 
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .footer-logo img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-        .footer-logo .logo-text h2 {
-            margin: 0;
-            font-size: 1.6em;
-            color: var(--white-color);
-        }
-        .footer-logo .logo-text p {
-            margin: 0;
-            font-size: 0.9em;
-            color: var(--light-bg);
-        }
-
-        .footer-section p {
-            font-size: 0.9em;
-            line-height: 1.6;
-            color: var(--light-bg);
-        }
-
-        .social-icons {
-            margin-top: 15px;
-        }
-        .social-icons a {
-            color: var(--white-color);
-            font-size: 1.3em;
-            margin-right: 15px;
-            transition: color 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--link-hover-color);
-        }
-
-        .footer-section ul {
+        .footer-links ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
-        .footer-section ul li {
-            margin-bottom: 8px;
+        
+        .footer-links li {
+            margin-bottom: 12px;
         }
-        .footer-section ul li a {
-            color: var(--light-bg);
-            text-decoration: none;
-            font-size: 0.95em;
+
+        .footer-links a {
             transition: color 0.3s ease;
         }
-        .footer-section ul li a:hover {
-            color: var(--white-color);
+
+        .footer-links a:hover {
+            color: #e44d26;
         }
 
-        .contact-info p {
+        .footer-contact-info p {
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
-            color: var(--light-bg);
-        }
-        .contact-info i {
-            margin-right: 10px;
-            color: var(--white-color);
-            font-size: 1.1em;
         }
 
-        .footer-bottom {
-            width: 100%;
+        .footer-contact-info i {
+            margin-right: 12px;
+            width: 20px;
             text-align: center;
-            padding: 15px 0 0 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            margin-top: 20px;
-            font-size: 0.85em;
+        }
+        
+        .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            padding-top: 20px;
+            font-size: 14px;
+            color: #ccc;
         }
-        .footer-bottom .copyright {
-            margin-bottom: 10px;
-            color: var(--light-bg);
-        }
-        .footer-bottom .policy-links a {
-            color: var(--light-bg);
-            text-decoration: none;
-            margin: 0 10px;
+
+        .footer-bottom-links a {
+            margin-left: 20px;
             transition: color 0.3s ease;
         }
-        .footer-bottom .policy-links a:hover {
-            color: var(--white-color);
+
+        .footer-bottom-links a:hover {
+            color: var(--text-color-light);
         }
 
-
-        /* Responsive Adjustments */
-        @media (max-width: 1024px) {
-            header, footer {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 15px 20px;
-            }
-            .header-left, .header-right {
-                padding: 0;
-                margin-bottom: 15px;
-                width: 100%;
-                justify-content: center; /* Center items on small screens */
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-            nav ul li {
-                width: 100%;
-                text-align: center;
-            }
-            nav ul li a {
-                border-bottom: 1px solid rgba(0,0,0,0.05);
-            }
-            .header-right {
-                flex-direction: column;
-                margin-top: 10px;
-            }
-            .header-right .phone-info {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .get-consultation-btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            footer {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .footer-section {
-                padding: 0 10px;
-                min-width: unset;
-                width: 100%;
-            }
-            .footer-section h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .footer-logo {
-                justify-content: center;
-            }
-            .social-icons {
-                margin-top: 10px;
-            }
-            .social-icons a {
-                margin: 0 8px;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                padding-top: 15px;
-            }
-            .footer-bottom .copyright {
-                margin-bottom: 15px;
-            }
-            .footer-bottom .policy-links {
-                display: flex;
-                flex-direction: column;
-            }
-            .footer-bottom .policy-links a {
-                margin: 5px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                grid-template-columns: 1fr; /* Single column for very small screens */
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="top-bar"></div>
 
-    <header>
-        <div class="header-left">
-            <img src="https://khushiastrologer.com/img/logo.webp" alt="Astro Khushi Logo"> <!-- Placeholder logo path -->
+    <!-- ======================= HEADER ======================= -->
+    <header class="site-header">
+        <a href="https://khushiastrologer.com/index.html" class="logo-container">
+            <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo" class="logo-img">
             <div class="logo-text">
                 <h1>Khushi Astrologer</h1>
                 <p>Vedic Astrology</p>
             </div>
-        </div>
-
-        <nav>
+        </a>
+        <nav class="main-nav">
             <ul>
                 <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
                 <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
@@ -469,158 +310,104 @@
                 <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <div class="header-right">
-            <span class="phone-info">
-                <i class="fas fa-phone-alt"></i> +91 8700030288
-            </span>
-            <a href="https://khushiastrologer.com/contact.html" class="get-consultation-btn">Get Consultation</a>
+        <div class="header-contact">
+            <div class="phone-number">
+                <i class="fas fa-phone-alt"></i>
+                <span>+91 98765 43210</span>
+            </div>
+            <a href="https://khushiastrologer.com/form.html" class="cta-button">Get Consultation</a>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Course Card 1: Tarot Card Reading -->
-        <div class="course-card" id="tarot-card">
-            <div class="card-header">
-                Tarot Card Reading
-            </div>
-            <div class="card-body">
-                <p>Unlock the mysteries of the Tarot with our comprehensive courses. Learn to interpret cards, spreads, and gain profound insights into life's questions.</p>
-                <ul>
-                    <li>Basic Tarot Reading</li>
-                    <li>Advanced Tarot Techniques</li>
-                </ul>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
+    <!-- ======================= MAIN CONTENT ======================= -->
+    <main>
+        <section class="courses-section" id="courses">
+            <h2>Our Courses</h2>
+            <div class="courses-container">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <img src="images/btor.png" alt="Tarot Card Reading Basic Course">
+                    <h3>Tarot Card Reading Basic Course</h3>
+                </div>
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <img src="images/ator.png" alt="Tarot Card Reading Advance Course">
+                    <h3>Tarot Card Reading Advance Course</h3>
+                </div>
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <img src="images/bnum.png" alt="Numerology Basic Course">
+                    <h3>Numerology Basic Course</h3>
+                </div>
+                <!-- Course 4 -->
+                <div class="course-card">
+                    <img src="images/anum.png" alt="Numerology Advance Course">
+                    <h3>Numerology Advance Course</h3>
+                </div>
+                <!-- Course 5 -->
+                <div class="course-card">
+                    <img src="images/bang.png" alt="Angels Basic Course">
+                    <h3>Angels Basic Course</h3>
+                </div>
+                <!-- Course 6 -->
+                <div class="course-card">
+                    <img src="images/aang.png" alt="Angels Advance Course">
+                    <h3>Angels Advance Course</h3>
                 </div>
             </div>
-        </div>
-
-        <!-- Course Card 2: Numerology -->
-        <div class="course-card" id="numerology-card">
-            <div class="card-header">
-                Numerology
-            </div>
-            <div class="card-body">
-                <p>Discover the power of numbers and their influence on your destiny. Our Numerology courses cover basic calculations and advanced interpretations.</p>
-                <ul>
-                    <li>Basic Numerology Concepts</li>
-                    <li>Advanced Numerology Analysis</li>
-                </ul>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 3: Angels -->
-        <div class="course-card" id="angels-card">
-            <div class="card-header">
-                Angels
-            </div>
-            <div class="card-body">
-                <p>Connect with the angelic realm and learn how to receive guidance and healing from divine beings. Explore different types of angels and their messages.</p>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 4: Runes -->
-        <div class="course-card" id="runes-card">
-            <div class="card-header">
-                Runes
-            </div>
-            <div class="card-body">
-                <p>Delve into the ancient wisdom of Runes. Learn their meanings, how to cast them for divination, and use them for personal guidance and insight.</p>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 5: Rules Casting -->
-        <div class="course-card" id="rules-casting-card">
-            <div class="card-header">
-                Rules Casting
-            </div>
-            <div class="card-body">
-                <p>Master the art of Rules Casting for specific divination and guidance. This course will teach you the techniques and interpretations for effective readings.</p>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Card 6: Candle Healing Therapy -->
-        <div class="course-card" id="candle-healing-card">
-            <div class="card-header">
-                Candle Healing Therapy
-            </div>
-            <div class="card-body">
-                <p>Experience the therapeutic power of candles. Learn how to use candle magic and color therapy for healing, manifestation, and spiritual well-being.</p>
-                <div class="card-footer">
-                    <button onclick="location.href='form.html'">Learn More</button>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="footer-section">
-            <div class="footer-logo">
-                <img src="https://khushiastrologer.com/img/logo.webp" alt="Astro Khushi Logo"> <!-- Placeholder logo path -->
-                <div class="logo-text">
-                    <h2>Khushi Astrologer</h2>
-                    <p>Vedic Astrology Expert</p>
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <!-- Column 1: About -->
+            <div class="footer-column footer-about">
+                 <a href="https://khushiastrologer.com/index.html" class="logo-container">
+                    <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Khushi Astrologer</h1>
+                        <p>Vedic Astrology Expert</p>
+                    </div>
+                </a>
+                <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
-            <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+                    <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+                    <li><a href="https://khushiastrologer.com/about.html">About Khushi</a></li>
+                    <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+                    <li><a href="https://khushiastrologer.com/course.html">Courses</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Contact Info -->
+            <div class="footer-column footer-contact-info">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+                <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
             </div>
         </div>
-
-        <div class="footer-section">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
-                <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
-                <li><a href="https://khushiastrologer.com/about.html">About Khushi</a></li>
-                <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
-                <li><a href="#">Free Horoscope</a></li> <!-- Placeholder for Free Horoscope link -->
-            </ul>
-        </div>
-
-        <div class="footer-section contact-info">
-            <h3>Contact Info</h3>
-            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
-            <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
-            <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
-        </div>
-
         <div class="footer-bottom">
-            <div class="copyright">
-                &copy; 2024 Khushi Astrologer. All rights reserved. | Vedic Astrology Services
-            </div>
-            <div class="policy-links">
-                <a href="privacypolicy.html">Privacy Policy</a>
-                <a href="TermsCondition.html">Terms of Service</a>
-                <a href="refundpolicy.html">Refund Policy</a>
-                <a href="shippingpolicy.html">Shipping Policy</a> <!-- New Shipping Policy Link -->
+            <p>&copy; 2025 Khushi Astrologer. All rights reserved. | Vedic Astrology Services</p>
+            <div class="footer-bottom-links">
+                <a href="https://khushiastrologer.com/privacypolicy.html">Privacy Policy</a>
+                <a href="https://khushiastrologer.com/TermsCondition.html">Terms of Service</a>
+                <a href="https://khushiastrologer.com/refundpolicy.html">Refund Policy</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // The enrollCourse function is no longer needed as buttons directly link to form.html
-        // function enrollCourse(courseName) {
-        //     alert('You are interested in the "' + courseName + '" course! We will redirect you to the enrollment page soon.');
-        //     // window.location.href = 'enrollment.html?course=' + encodeURIComponent(courseName);
-        // }
-    </script>
 </body>
 </html>
