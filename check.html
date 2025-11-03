@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Astrologer - Vedic Astrology</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap');
+
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #D2B48C;
+            --text-color: #333; /* Darker text for better contrast */
+            --background-color: #FFF8F0;
+            --header-bg: #fff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--header-bg);
+            padding: 10px 0;
+            position: sticky; /* Changed to sticky for the new nav */
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 14px; /* Adjusted for the new nav */
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* New Nav Styling */
+        .main-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .main-nav li {
+            position: relative;
+            padding: 10px 15px;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+        .main-nav .dropdown-arrow {
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+
+        .logo-text strong {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-phone {
+            margin-right: 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #6d0000;
+        }
+
+        /* Hero Section with New Banner */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background-color: #f4f4f4; /* Fallback color */
+        }
+        .carousel-container {
+            width: 100%;
+            display: flex; /* Using flex for single item carousel */
+        }
+        .carousel-slide {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .prev, .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          padding: 16px;
+          color: white;
+          font-weight: bold;
+          font-size: 24px;
+          background-color: rgba(0,0,0,0.3);
+          border-radius: 50%;
+          user-select: none;
+          z-index: 5;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .next { right: 20px; }
+        .prev { left: 20px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.6); }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #333;
+            margin: 0;
+        }
+        .section-title h2 span {
+            color: var(--primary-color);
+        }
+        .section-title p {
+            max-width: 600px;
+            margin: 10px auto 0;
+            font-size: 16px;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            border: 1px solid #eee;
+        }
+        .service-card .icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .service-card p {
+            margin: 0 0 20px;
+            font-size: 15px;
+            min-height: 80px;
+        }
+        .service-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .service-footer .duration {
+            font-weight: 500;
+            color: #777;
+        }
+        .service-footer .btn {
+            padding: 8px 18px;
+            font-size: 14px;
+        }
+        
+        /* About Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .about-content, .expertise-box {
+            flex: 1;
+        }
+        .tag {
+            background-color: #FAEBD7;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            display: inline-block;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #333;
+            margin: 0 0 20px;
+        }
+        .about-content h2 span {
+            color: var(--primary-color);
+        }
+        .about-content p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        .expertise-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .expertise-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin: 0 0 20px;
+            color: #333;
+        }
+        .expertise-box .star-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: var(--secondary-color);
+        }
+        .expertise-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .expertise-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .expertise-list li::before {
+            content: '✓';
+            color: white;
+            background: var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+        
+        /* Mentor Section */
+        .mentor-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .mentor-image {
+            flex-basis: 40%;
+        }
+        .mentor-image img {
+            width: 100%;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+        .mentor-content {
+            flex-basis: 60%;
+        }
+        .mentor-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #333;
+            margin: 0 0 20px;
+        }
+         .mentor-content h2 span {
+            display: block;
+            color: var(--primary-color);
+            font-size: 48px;
+        }
+        .mentor-content p {
+            margin-bottom: 25px;
+        }
+        
+        /* Featured Section */
+        .featured-section {
+            text-align: center;
+        }
+        .featured-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            margin-top: 40px;
+        }
+        .featured-logos span {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Awards Section */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .award-item .award-icon {
+            color: #ccc;
+            font-style: italic;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .award-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        /* Podcast Section */
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .video-item iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        /* Contact Section */
+        .contact-wrapper {
+            display: flex;
+            gap: 40px;
+        }
+        .contact-form {
+            flex: 2;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .contact-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin: 0 0 30px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .contact-info-sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .info-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #333;
+            margin: 0 0 15px;
+        }
+        .info-box p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+         .info-box p i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        .info-box.highlight {
+            background-color: #FEF9F3;
+            text-align: center;
+        }
+        .info-box.highlight h4 {
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .footer-about, .footer-links, .footer-contact {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 20px;
+        }
+        .footer-about .logo-text strong {
+            color: white;
+        }
+        .footer-about .logo-text span {
+            color: #eee;
+        }
+        .footer-about p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #eee;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        .footer-links ul li a {
+            color: #eee;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+        .footer-contact p i {
+            margin-right: 10px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #eee;
+        }
+        .footer-bottom-links a {
+            color: #eee;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .main-nav { display: none; } /* Hide complex nav on smaller screens for simplicity */
+        }
+        @media (max-width: 992px) {
+            .services-grid, .awards-grid, .podcast-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-section, .mentor-section {
+                flex-direction: column;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+         @media (max-width: 576px) {
+            .services-grid, .awards-grid, .podcast-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <!-- Simplified Logo for new design -->
+            <div class="logo">
+                <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo">
+            </div>
+            
+            <!-- New Navigation Menu -->
+            <ul class="main-nav">
+                <li><a href="#">Reports <span class="dropdown-arrow">▼</span></a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Call Consultation <span class="dropdown-arrow">▼</span></a></li>
+                <li><a href="#">Ask Our Astrologer</a></li>
+                <li><a href="#">Gemstone</a></li>
+                <li><a href="#">Free Calculator <span class="dropdown-arrow">▼</span></a></li>
+                <li><a href="#">Panchang <span class="dropdown-arrow">▼</span></a></li>
+                <li><a href="#">Horoscope <span class="dropdown-arrow">▼</span></a></li>
+                <li><a href="#">Name Correction Service</a></li>
+                <li><a href="#">Online Puja Services</a></li>
+                <li><a href="#">Collaborations <span class="dropdown-arrow">▼</span></a></li>
+                 <li><a href="#">About <span class="dropdown-arrow">▼</span></a></li>
+            </ul>
+
+            <!-- Right side CTA - can be adjusted as needed -->
+             <div class="nav-right">
+                <a href="#" class="btn">Get Consultation</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <!-- New banner image -->
+                    <img src="https://i.imgur.com/G0aT3m9.png" alt="Varshphal 2026 Report Banner">
+                </div>
+                <!-- Add more carousel-slide divs here for a multi-image carousel -->
+            </div>
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </section>
+
+        <!-- The "Our Sacred Services" title is now a standard section title -->
+        <section id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our <span>Sacred Services</span></h2>
+                    <p>Comprehensive Vedic astrology services to guide you through every aspect of life with ancient wisdom and modern understanding.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="icon">★</div>
+                        <h3>Birth Chart Reading</h3>
+                        <p>Complete analysis of your birth chart (Kundali) with planetary positions and their effects on your life.</p>
+                        <div class="service-footer">
+                            <span class="duration">45 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">💼</div>
+                        <h3>Career Guidance</h3>
+                        <p>Discover your ideal career path and professional success through astrological insights.</p>
+                        <div class="service-footer">
+                            <span class="duration">60 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">❤️</div>
+                        <h3>Love & Relationships</h3>
+                        <p>Find compatibility, resolve relationship issues, and discover your soulmate through Vedic matching.</p>
+                        <div class="service-footer">
+                            <span class="duration">50 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">💰</div>
+                        <h3>Financial Astrology</h3>
+                        <p>Get insights on wealth, investments, and financial growth based on planetary influences.</p>
+                        <div class="service-footer">
+                            <span class="duration">45 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">👶</div>
+                        <h3>Child Astrology</h3>
+                        <p>Name suggestions, future predictions, and guidance for your child's bright future.</p>
+                        <div class="service-footer">
+                            <span class="duration">40 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                         <div class="icon">🏠</div>
+                        <h3>Vastu Consultation</h3>
+                        <p>Home and office Vastu guidance to bring positive energy and prosperity.</p>
+                        <div class="service-footer">
+                            <span class="duration">75 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">🏢</div>
+                        <h3>Business Astrology</h3>
+                        <p>Launch dates, partnership compatibility, and business growth strategies.</p>
+                        <div class="service-footer">
+                            <span class="duration">90 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">📅</div>
+                        <h3>Muhurat Selection</h3>
+                        <p>Find the most auspicious time for important life events and ceremonies.</p>
+                        <div class="service-footer">
+                            <span class="duration">30 mins</span>
+                            <a href="#" class="btn">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <div class="about-section">
+                <div class="about-content">
+                    <span class="tag">About Khushi Astrologer</span>
+                    <h2>Your Trusted Guide to <br><span>Cosmic Wisdom</span></h2>
+                    <p>Namaste! I am Khushi, a dedicated Vedic astrologer with over 15 years of experience in guiding souls through the ancient science of Jyotish. My journey began with a deep spiritual calling to help people understand their divine purpose and navigate life's challenges with cosmic wisdom.</p>
+                    <p>Trained under renowned masters and certified in classical Vedic astrology, I combine traditional knowledge with intuitive insights to provide accurate and compassionate guidance.</p>
+                </div>
+                <div class="expertise-box">
+                    <span class="star-icon">⭐</span>
+                    <h3>Areas of Expertise</h3>
+                    <ul class="expertise-list">
+                        <li>Vedic Birth Chart Analysis</li>
+                        <li>Predictive Astrology</li>
+                        <li>Relationship Compatibility</li>
+                        <li>Career & Financial Guidance</li>
+                        <li>Spiritual Counseling</li>
+                        <li>Vastu Shastra</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+             <div class="mentor-section">
+                <div class="mentor-image">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1045,fit=crop,trim=0;1043.4522821576763;0;697.6929460580913/A3QlKPKKE7ulbQOy/img_9143-mxB21LNaoOSRk9jZ.JPG" alt="Khushi Astrologer">
+                </div>
+                <div class="mentor-content">
+                    <h2>Meet Your Mentor, <br><span>Khushi</span></h2>
+                    <p>With a heart full of compassion and a mind steeped in the ancient texts, Khushi bridges the gap between cosmic knowledge and modern life. Her intuitive approach helps demystify complex astrological concepts, making them accessible and practical for everyone.</p>
+                    <p>She believes that astrology is not about rigid predictions, but about empowerment—giving you the tools to understand your strengths, navigate your challenges, and consciously create a life aligned with your soul's purpose.</p>
+                    <a href="#" class="btn">Consult with Khushi</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="container">
+                <div class="section-title">
+                     <h2>Trusted By & <span>Featured In</span></h2>
+                </div>
+                <div class="featured-logos">
+                    <span><i class="fas fa-image"></i> Company Logo 1</span>
+                    <span><i class="fas fa-image"></i> Company Logo 2</span>
+                    <span><i class="fas fa-image"></i> Company Logo 3</span>
+                </div>
+            </div>
+        </section>
+        
+         <section id="awards">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Awards & <span>Recognition</span></h2>
+                    <p>Acknowledged for dedication and excellence in the field of Vedic Astrology.</p>
+                </div>
+                <div class="awards-grid">
+                    <div class="award-item">
+                        <div class="award-icon">Award 1</div>
+                        <h3>Jyotish Ratna Award</h3>
+                        <p>For outstanding contribution to predictive astrology.</p>
+                    </div>
+                     <div class="award-item">
+                        <div class="award-icon">Award 2</div>
+                        <h3>Vedic Excellence Prize</h3>
+                        <p>Recognized for authentic and compassionate guidance.</p>
+                    </div>
+                     <div class="award-item">
+                        <div class="award-icon">Award 3</div>
+                        <h3>Cosmic Healer Title</h3>
+                        <p>Awarded for spiritual counseling and healing services.</p>
+                    </div>
+                     <div class="award-item">
+                        <div class="award-icon">Award 4</div>
+                        <h3>Astrologer of the Year</h3>
+                        <p>Voted by the International Astrology Federation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="podcast">
+             <div class="container">
+                <div class="section-title">
+                    <h2>Wisdom On Air: <span>Our Videos</span></h2>
+                    <p>Tune in to our videos where we explore cosmic insights, planetary transits, and spiritual wisdom to guide your journey.</p>
+                </div>
+                <div class="podcast-grid">
+                    <div class="video-item">
+                       <iframe src="https://www.youtube.com/embed/5-NZQcEz_7A" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                       <iframe src="https://www.youtube.com/embed/BV_LKDkliFM" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-item">
+                        <iframe src="https://www.youtube.com/embed/MrB4WMMm1MY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                     <div class="video-item">
+                        <iframe src="https://www.youtube.com/embed/s0IJH9NCKGk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+             <div class="container">
+                 <div class="section-title">
+                    <h2>Connect with <span>Divine Guidance</span></h2>
+                    <p>Ready to discover your cosmic destiny? Reach out for personalized astrological consultation and spiritual guidance.</p>
+                </div>
+                <div class="contact-wrapper">
+                    <form class="contact-form">
+                        <h3><i class="fas fa-edit"></i> Book Your Consultation</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="full-name">Full Name *</label>
+                                <input type="text" id="full-name" placeholder="Enter your full name">
+                            </div>
+                             <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" value="+918700030288">
+                            </div>
+                             <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth *</label>
+                                <input type="text" id="dob" placeholder="mm/dd/yyyy">
+                            </div>
+                             <div class="form-group">
+                                <label for="tob">Time of Birth</label>
+                                <input type="text" id="tob" placeholder="--:--">
+                            </div>
+                            <div class="form-group">
+                                <label for="pob">Place of Birth</label>
+                                <input type="text" id="pob" placeholder="City, State, Country">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="service">Service Required *</label>
+                                <select id="service">
+                                    <option>Select a service</option>
+                                </select>
+                            </div>
+                             <div class="form-group full-width">
+                                <label for="concerns">Questions/Concerns</label>
+                                <textarea id="concerns" placeholder="Please share your specific questions or areas of concern..."></textarea>
+                            </div>
+                        </div>
+                         <button type="submit" class="btn">Book Consultation</button>
+                    </form>
+                    <div class="contact-info-sidebar">
+                        <div class="info-box">
+                            <h4>Call Us</h4>
+                            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+                            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+                            <p><small>Available 9 AM - 9 PM (IST)</small></p>
+                        </div>
+                        <div class="info-box">
+                            <h4>Email Us</h4>
+                            <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                            <p><small>consultations@astrokhushi.com</small></p>
+                             <p><small>We reply within 24 hours</small></p>
+                        </div>
+                        <div class="info-box">
+                            <h4>Visit Us</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
+                            <p><small>By appointment only</small></p>
+                        </div>
+                        <div class="info-box">
+                            <h4>Consultation Hours</h4>
+                            <p><i class="fas fa-clock"></i> Mon - Sat: 9 AM - 9 PM</p>
+                            <p><i class="fas fa-clock"></i> Sunday: 10 AM - 6 PM</p>
+                            <p><small>All times in IST</small></p>
+                        </div>
+                        <div class="info-box highlight">
+                             <h4>Need Immediate Guidance?</h4>
+                             <a href="#" class="btn"><i class="fas fa-phone-alt"></i> Call Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-about">
+                    <div class="logo">
+                         <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo">
+                        <div class="logo-text">
+                            <strong>Khushi Astrologer</strong>
+                            <span>Vedic Astrology Expert</span>
+                        </div>
+                    </div>
+                    <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Khushi</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                     <h3 class="footer-title">Contact Info</h3>
+                     <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+                     <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                     <p><i class="fas fa-map-marker-alt"></i> 123 Spiritual Center<br>Delhi, India 110001</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                 <span>© 2025 Khushi Astrologer. All rights reserved. | Vedic Astrology Services</span>
+                 <div class="footer-bottom-links">
+                     <a href="#">Privacy Policy</a>
+                     <a href="#">Terms of Service</a>
+                     <a href="#">Disclaimer</a>
+                 </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const slides = document.querySelectorAll(".carousel-slide");
+        if (slides.length <= 1) {
+            document.querySelector('.prev').style.display = 'none';
+            document.querySelector('.next').style.display = 'none';
+        }
+        // Full carousel logic can be added here if more slides are provided in the HTML
+    });
+</script>
+</body>
+</html>
