@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Checkout</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            color: #1c1e21;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .price-details {
+            text-align: left;
+            margin-bottom: 2rem;
+            color: #4b5056;
+        }
+        .price-details p {
+            margin: 0.8rem 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+        .price-details .total {
+            font-weight: bold;
+            color: #1c1e21;
+            border-top: 1px solid #e4e6eb;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        #pay-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #pay-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+        }
+        .success-container {
+            display: none;
+            color: #155724;
+        }
+        .success-container h2 {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="checkout-container" class="container">
+        <h1>Course Checkout</h1>
+        <div class="price-details">
+            <p><span>Course Cost:</span> <span id="course-cost"></span></p>
+            <p><span>GST (18%):</span> <span id="gst-amount"></span></p>
+            <p class="total"><span>Total Cost:</span> <span id="total-cost"></span></p>
+        </div>
+        <button id="pay-button">Pay Now</button>
+    </div>
+
+    <div id="success-container" class="container success-container">
+        <h2>Payment Successful!</h2>
+        <p>Thank you for your purchase.</p>
+        <p>You will receive your username and password for the course on your email shortly.</p>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const courseCost = 3499;
+            const gstRate = 0.18;
+            const gstAmount = courseCost * gstRate;
+            const totalCost = courseCost + gstAmount;
+
+            // Displaying the calculated amounts
+            document.getElementById('course-cost').innerText = `₹${courseCost.toFixed(2)}`;
+            document.getElementById('gst-amount').innerText = `₹${gstAmount.toFixed(2)}`;
+            document.getElementById('total-cost').innerText = `₹${totalCost.toFixed(2)}`;
+
+            document.getElementById('pay-button').onclick = function(e){
+                e.preventDefault();
+                var options = {
+                    "key": "rzp_test_RY5vAl4zbESfHP", // Your test key_id
+                    "amount": Math.round(totalCost * 100), // Amount in the smallest currency unit (paise)
+                    "currency": "INR",
+                    "name": "Complete Web Development Course",
+                    "description": "A comprehensive course on web development.",
+                    "image": "https://cdn.razorpay.com/logos/brand-large.png", // A sample logo
+                    "handler": function (response){
+                        // This function is called after a successful payment
+                        document.getElementById('checkout-container').style.display = 'none';
+                        document.getElementById('success-container').style.display = 'block';
+                    },
+                    "prefill": {
+                        "name": "", // Customer's name
+                        "email": "", // Customer's email
+                        "contact": ""  // Customer's phone number
+                    },
+                    "notes": {
+                        "course_name": "Web Development Masterclass"
+                    },
+                    "theme": {
+                        "color": "#007bff"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+
+                rzp1.on('payment.failed', function (response){
+                        alert("Payment Failed: " + response.error.description);
+                });
+
+                rzp1.open();
+            }
+        });
+    </script>
+
+</body>
+</html>
