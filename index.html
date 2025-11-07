@@ -4,1164 +4,464 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khushi Astrologer - Vedic Astrology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap');
-
+        /* 
+        ========================================
+        BASE & GENERAL STYLING
+        ========================================
+        */
         :root {
-            --primary-color: #8B0000;
-            --secondary-color: #D2B48C;
-            --text-color: #555;
-            --background-color: #FFF8F0;
-            --dark-background: #4A0000;
+            --primary-color: #8C1C13; /* Deep Red */
+            --secondary-color: #fdfaf6; /* Lighter Beige Background */
+            --text-color: #333333;
+            --heading-font: 'Lora', serif;
+            --body-font: 'Poppins', sans-serif;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--body-font); background-color: var(--secondary-color); color: var(--text-color); line-height: 1.7; font-size: 16px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-family: var(--heading-font); color: var(--primary-color); font-weight: 700; }
+        p { margin-bottom: 1rem; }
+        img { max-width: 100%; height: auto; }
+        .btn { display: inline-block; background-color: var(--primary-color); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease, transform 0.3s ease; border: none; cursor: pointer; }
+        .btn:hover { background-color: #6d150e; transform: translateY(-2px); }
+        section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 20px; font-size: 2.8rem; }
+        .section-subtitle { text-align: center; max-width: 700px; margin: 0 auto 50px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            margin-left: 10px;
-        }
-
-        .logo-text strong {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            font-size: 12px;
-            color: var(--text-color);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-        nav ul li a.active, nav ul li a:hover {
-            color: var(--primary-color);
-        }
-        nav ul li a.active::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-color);
-            position: absolute;
-            bottom: -5px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-phone {
-            margin-right: 20px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #6d0000;
-        }
-
-        /* Hero Section with Carousel */
-        .hero {
-            background-color: #000;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .carousel-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        /* 
+        ========================================
+        HEADER & NAVIGATION
+        ========================================
+        */
+        .main-header { background-color: var(--secondary-color); padding: 15px 0; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 1000; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; color: inherit; }
+        .logo img { width: 50px; margin-right: 10px; }
+        .logo-text { font-family: var(--heading-font); font-size: 1.2rem; line-height: 1.2; }
+        .logo-text span { display: block; font-size: 0.8rem; font-family: var(--body-font); }
+        .main-nav { display: flex; align-items: center; }
+        .main-nav ul { list-style: none; display: flex; }
+        .main-nav ul li { margin: 0 15px; }
+        .main-nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.3s ease; }
+        .main-nav ul li a:hover { color: var(--primary-color); }
+        .header-contact { display: flex; align-items: center; }
+        .header-contact .phone { margin-right: 20px; font-weight: 600; color: var(--primary-color); text-decoration: none; }
+        .header-contact .phone i { margin-right: 5px; }
+        .mobile-toggle { display: none; font-size: 24px; cursor: pointer; border: none; background: none; color: var(--primary-color); z-index: 1001; }
         
-        .carousel-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            z-index: 1;
-        }
+        /* 
+        ========================================
+        HERO CAROUSEL SECTION
+        ========================================
+        */
+        .hero-carousel { position: relative; width: 100%; height: 600px; overflow: hidden; }
+        .carousel-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        .carousel-slide.active { opacity: 1; }
+        .carousel-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; background-color: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 10px; }
+        .carousel-content h1 { color: #fff; font-size: 2.5rem; margin-bottom: 20px; }
+        .carousel-content p { font-size: 1.2rem; margin-bottom: 30px; }
+        .btn-main { background-color: #FFD700; color: #333; padding: 18px 35px; font-size: 1.5rem; font-weight: 700; border-radius: 10px; }
+        .carousel-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); padding: 0 20px; z-index: 10; }
+        .carousel-nav button { background-color: rgba(0, 0, 0, 0.5); color: white; border: none; font-size: 2rem; cursor: pointer; padding: 10px 15px; border-radius: 50%; transition: background-color 0.3s ease; }
+        .carousel-nav button:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.5); cursor: pointer; transition: background-color 0.3s ease; }
+        .dot.active { background-color: white; }
 
-        .carousel-slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
-        
-        /* The semi-transparent overlay has been removed */
+        /* 
+        ========================================
+        SERVICES SECTION
+        ========================================
+        */
+        .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .service-card { background: #fff; padding: 30px; text-align: left; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .service-card img { width: 40px; margin-bottom: 15px; }
+        .service-card .icon { font-size: 30px; color: var(--primary-color); margin-bottom: 15px; }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .service-card p { font-size: 0.9rem; margin-bottom: 20px; flex-grow: 1; }
+        .service-card .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .service-card .duration { font-size: 0.9rem; color: #777; }
 
-        .hero-content {
-            position: relative;
-            z-index: 4; /* Kept high to stay above images */
-            max-width: 800px;
-            margin: 0 auto;
-            /* Added text shadow for readability on bright images */
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        }
-        
-        .prev, .next {
-          cursor: pointer;
-          position: absolute;
-          top: 50%;
-          width: auto;
-          margin-top: -22px;
-          padding: 16px;
-          color: white;
-          font-weight: bold;
-          font-size: 24px;
-          transition: 0.6s ease;
-          border-radius: 0 3px 3px 0;
-          user-select: none;
-          z-index: 5;
-        }
+        /* 
+        ========================================
+        ABOUT, MENTOR SECTIONS
+        ========================================
+        */
+        .about-expertise, .mentor-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-content h2, .mentor-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .expertise-box { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: relative; }
+        .expertise-box .icon-star { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; color: #FFD700; }
+        .expertise-box h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .expertise-box ul { list-style: none; }
+        .expertise-box ul li { margin-bottom: 10px; display: flex; align-items: center; }
+        .expertise-box ul li i { color: var(--primary-color); margin-right: 10px; }
+        .mentor-image img { border-radius: 15px; }
 
-        .next {
-          right: 0;
-          border-radius: 3px 0 0 3px;
-        }
-        .prev {
-          left: 0;
-        }
+        /* 
+        ========================================
+        TRUSTED BY & AWARDS
+        ========================================
+        */
+        .trusted { text-align: center; }
+        .logos { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; margin-top: 30px; }
+        .logos img { max-height: 50px; filter: grayscale(1); opacity: 0.7; transition: all 0.3s ease; }
+        .logos img:hover { filter: grayscale(0); opacity: 1; }
+        .awards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .award-card { background: #fff; border: 1px solid #eee; padding: 25px; text-align: center; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .award-card .award-title { color: #aaa; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .award-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
 
-        .prev:hover, .next:hover {
-          background-color: rgba(0,0,0,0.3); /* Controls arrow background on hover */
-        }
+        /* 
+        ========================================
+        VIDEOS & CONTACT
+        ========================================
+        */
+        .videos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .video-thumb { position: relative; cursor: pointer; overflow: hidden; border-radius: 10px; display: block; }
+        .video-thumb img { display: block; width: 100%; transition: transform 0.3s ease; }
+        .video-thumb:hover img { transform: scale(1.05); }
+        .play-button { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: red; background-color: rgba(255, 255, 255, 0.85); border-radius: 50%; width: 70px; height: 70px; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s ease; }
+        .video-thumb:hover .play-button { background-color: rgba(255, 255, 255, 1); }
+        .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .contact-form { background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .contact-form h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-grid .full-width { grid-column: 1 / -1; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: var(--body-font); font-size: 1rem; }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .contact-details-box { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .contact-details-box h3 { font-size: 1.3rem; margin-bottom: 15px; }
+        .contact-details-box p { margin-bottom: 10px; display: flex; align-items: center; }
+        .contact-details-box i { color: var(--primary-color); margin-right: 10px; width: 20px; text-align: center; }
+        .contact-details-box .btn { width: 100%; text-align: center; }
 
-        .dots-container {
-          text-align: center;
-          position: absolute;
-          bottom: 30px;
-          width: 100%;
-          z-index: 5;
-        }
+        /* 
+        ========================================
+        FOOTER
+        ========================================
+        */
+        .main-footer { background-color: var(--primary-color); color: #fff; }
+        .footer-main { padding: 60px 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-about .logo { margin-bottom: 20px; }
+        .footer-about p, .footer-links ul li a, .footer-info p { color: #eee; }
+        .social-icons { margin-top: 20px; }
+        .social-icons a { color: #fff; font-size: 1.5rem; margin-right: 15px; text-decoration: none; transition: color 0.3s ease; }
+        .social-icons a:hover { color: #FFD700; }
+        .footer-links h4, .footer-info h4 { color: #fff; margin-bottom: 15px; font-size: 1.2rem; }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li a { text-decoration: none; margin-bottom: 8px; display: inline-block; }
+        .footer-info i { margin-right: 10px; }
+        .footer-sub { border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 20px 0; }
+        .footer-sub .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-sub p, .footer-sub a { color: #eee; font-size: 0.9rem; text-decoration: none; }
+        .footer-sub-links a { margin-left: 20px; }
 
-        .dot {
-          cursor: pointer;
-          height: 12px;
-          width: 12px;
-          margin: 0 5px;
-          background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-          display: inline-block;
-          transition: background-color 0.6s ease;
-          box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Shadow for dot visibility */
-        }
-
-        .dot.active, .dot:hover {
-          background-color: #fff;
-        }
-        
-        .trusted-badge {
-            background: rgba(0, 0, 0, 0.4); /* Darker badge for contrast */
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 64px;
-            margin: 0;
-            line-height: 1.2;
-        }
-         .hero h1 span {
-            color: #FFD700; /* Gold color */
-            font-style: italic;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin: 20px 0 30px;
-        }
-
-        .btn-secondary {
-            background-color: #e9c49a;
-            color: #333;
-            padding: 15px 30px;
-            font-size: 18px;
-            text-shadow: none; /* No shadow on button text */
-        }
-        .btn-secondary:hover {
-             background-color: #d8b38a;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 50px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item strong {
-            display: block;
-            font-size: 36px;
-            font-weight: 700;
-        }
-
-        .stat-item span {
-            font-size: 16px;
-        }
-        
-        /* General Section Styling */
-        section {
-            padding: 80px 0;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: #333;
-            margin: 0;
-        }
-        .section-title h2 span {
-            color: var(--primary-color);
-        }
-        .section-title p {
-            max-width: 600px;
-            margin: 10px auto 0;
-            font-size: 16px;
-        }
-        
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .service-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            border: 1px solid #eee;
-        }
-        .service-card .icon {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        .service-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            margin: 0 0 10px;
-            color: #333;
-        }
-        .service-card p {
-            margin: 0 0 20px;
-            font-size: 15px;
-            min-height: 80px;
-        }
-        .service-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-        .service-footer .duration {
-            font-weight: 500;
-            color: #777;
-        }
-        .service-footer .btn {
-            padding: 8px 18px;
-            font-size: 14px;
-        }
-        
-        /* About Section */
-        .about-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        .about-content, .expertise-box {
-            flex: 1;
-        }
-        .tag {
-            background-color: #FAEBD7;
-            color: var(--primary-color);
-            padding: 5px 15px;
-            display: inline-block;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        .about-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: #333;
-            margin: 0 0 20px;
-        }
-        .about-content h2 span {
-            color: var(--primary-color);
-        }
-        .about-content p {
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-        .expertise-box {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-            position: relative;
-        }
-        .expertise-box h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            margin: 0 0 20px;
-            color: #333;
-        }
-        .expertise-box .star-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            color: var(--secondary-color);
-        }
-        .expertise-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .expertise-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .expertise-list li::before {
-            content: '✓';
-            color: white;
-            background: var(--primary-color);
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            font-size: 14px;
-        }
-        
-        /* Mentor Section */
-        .mentor-section {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        .mentor-image {
-            flex-basis: 40%;
-        }
-        .mentor-image img {
-            width: 100%;
-            border-radius: 10px;
-            max-width: 400px;
-        }
-        .mentor-content {
-            flex-basis: 60%;
-        }
-        .mentor-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            color: #333;
-            margin: 0 0 20px;
-        }
-         .mentor-content h2 span {
-            display: block;
-            color: var(--primary-color);
-            font-size: 48px;
-        }
-        .mentor-content p {
-            margin-bottom: 25px;
-        }
-        
-        /* Featured Section */
-        .featured-section {
-            text-align: center;
-        }
-        .featured-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 80px;
-            margin-top: 40px;
-        }
-        .featured-logos span {
-            color: #aaa;
-            font-style: italic;
-        }
-
-        /* Awards Section */
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-        .award-item .award-icon {
-            color: #ccc;
-            font-style: italic;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .award-item h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            margin: 0 0 10px;
-            color: #333;
-        }
-
-        /* Podcast Section */
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        .video-item iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: none;
-            border-radius: 10px;
-        }
-        
-        /* Contact Section */
-        .contact-wrapper {
-            display: flex;
-            gap: 40px;
-        }
-        .contact-form {
-            flex: 2;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .contact-form h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            color: var(--primary-color);
-            margin: 0 0 30px;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        .form-group label {
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #333;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .contact-form .btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .contact-info-sidebar {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .info-box {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        .info-box h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            color: #333;
-            margin: 0 0 15px;
-        }
-        .info-box p {
-            margin: 5px 0;
-            display: flex;
-            align-items: center;
-        }
-         .info-box p i {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-        .info-box.highlight {
-            background-color: #FEF9F3;
-            text-align: center;
-        }
-        .info-box.highlight h4 {
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 60px 0 20px;
-        }
-        .footer-wrapper {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .footer-about, .footer-links, .footer-contact {
-            flex: 1;
-            min-width: 250px;
-            padding: 0 20px;
-        }
-        .footer-about .logo-text strong {
-            color: white;
-        }
-        .footer-about .logo-text span {
-            color: #eee;
-        }
-        .footer-about p {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #eee;
-        }
-        .social-icons {
-            margin-top: 20px;
-        }
-        .social-icons a {
-            color: white;
-            margin-right: 15px;
-            font-size: 20px;
-            text-decoration: none;
-        }
-        .footer-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .footer-links ul li {
-            margin-bottom: 10px;
-        }
-        .footer-links ul li a {
-            color: #eee;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer-links ul li a:hover {
-            color: white;
-        }
-        .footer-contact p {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            color: #eee;
-        }
-        .footer-contact p i {
-            margin-right: 10px;
-        }
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #eee;
-        }
-        .footer-bottom-links a {
-            color: #eee;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        /* Responsive adjustments */
+        /* 
+        ========================================
+        RESPONSIVE DESIGN (MEDIA QUERIES)
+        ========================================
+        */
         @media (max-width: 992px) {
-            .services-grid, .awards-grid, .podcast-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .about-section, .mentor-section {
-                flex-direction: column;
-            }
-            .contact-wrapper {
-                flex-direction: column;
-            }
+            .header-contact { display: none; }
+            .mobile-toggle { display: block; }
+            .main-nav { position: absolute; top: 80px; right: 0; background: var(--secondary-color); width: 100%; flex-direction: column; transform: translateX(100%); transition: transform 0.3s ease-in-out; border-bottom: 1px solid #ddd; }
+            .main-nav.active { transform: translateX(0); }
+            .main-nav ul { flex-direction: column; width: 100%; text-align: center; }
+            .main-nav ul li { margin: 0; border-bottom: 1px solid #eee; }
+            .main-nav ul li a { display: block; padding: 20px; }
+            .section-title { font-size: 2.5rem; }
+            .services-grid, .awards-grid, .videos-grid { grid-template-columns: 1fr 1fr; }
+            .about-expertise, .mentor-section, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .mentor-section { text-align: center; }
+            .mentor-image { order: -1; margin-bottom: 20px; }
+            .mentor-image img { max-width: 350px; margin: 0 auto; }
         }
+
         @media (max-width: 768px) {
-            nav ul, .nav-phone {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 48px;
-            }
+            section { padding: 60px 0; }
+            .section-title { font-size: 2.2rem; }
+            .section-subtitle { margin-bottom: 40px; }
+            .hero-carousel { height: 450px; }
+            .carousel-content h1 { font-size: 2rem; }
+            .carousel-content p { font-size: 1rem; }
+            .btn-main { font-size: 1.2rem; padding: 15px 30px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-grid .full-width { grid-column: 1 / -1; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-about .logo, .social-icons { justify-content: center; }
+            .footer-sub .container { justify-content: center; text-align: center; }
         }
-         @media (max-width: 576px) {
-            .services-grid, .awards-grid, .podcast-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .footer-wrapper {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 15px;
-            }
+
+        @media (max-width: 576px) {
+            .services-grid, .awards-grid, .videos-grid { grid-template-columns: 1fr; }
+            .logos { gap: 30px; }
+            .logos img { max-height: 35px; }
+            .logo-text strong { font-size: 1rem; }
+            .logo-text span { font-size: 0.7rem; }
+            .hero-carousel { height: 350px; }
+            .carousel-nav button { font-size: 1.5rem; padding: 8px 12px; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">
                 <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo">
                 <div class="logo-text">
                     <strong>Khushi Astrologer</strong>
                     <span>Vedic Astrology</span>
                 </div>
-            </div>
-            <ul>
-                                       <li><a href="index.html">Home</a></li>
-                        <li><a href="service.html">Services</a></li>
-                        <li><a href="about.html">About Khushi</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="course.html">Courses</a></li>
-
-            </ul>
-            <div class="nav-right">
-                <span class="nav-phone"><i class="fas fa-phone-alt"></i> +91 8700030288</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="about.html">About Khushi</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="course.html">Courses</a></li>
+                </ul>
+            </nav>
+            <div class="header-contact">
+                <a href="tel:+918700030288" class="phone"><i class="fas fa-phone-alt"></i> +91 8700030288</a>
                 <a href="form.html" class="btn">Get Consultation</a>
             </div>
-        </nav>
+            <button class="mobile-toggle" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
     </header>
 
     <main>
-        <section class="hero">
-            <div class="carousel-container">
-                <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/4.png');"></div>
-                <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/2.png');"></div>
-                <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/33.png');"></div>
-                <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/1.png');"></div>
-                <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/5.png');"></div>
+        <!-- HERO CAROUSEL -->
+        <section class="hero-carousel" id="hero-carousel" style="padding:0;">
+            <div class="carousel-slide active" style="background-image: url('https://khushiastrologer.com/4.png');"></div>
+            <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/5.png');"></div>
+            <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/2.png');"></div>
+            <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/33.png');"></div>
+            <div class="carousel-slide" style="background-image: url('https://khushiastrologer.com/1.png');"></div>
+            <div class="carousel-content">
+                
+                <a href="form.html" class="btn btn-main">Book Your Consultation</a>
             </div>
-
-            <a class="prev">&#10094;</a>
-            <a class="next">&#10095;</a>
-            
-            <div class="dots-container">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="carousel-nav">
+                <button id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button id="next-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
-
-            <div class="hero-content">
-                <span class="trusted-badge"></span>
-                <h1><br><span></span><br> </h1>
-                <p></p>
-                <a href="form" class="btn btn-secondary">Get Your Reading</a>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <strong></strong>
-                        <span></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong></strong>
-                        <span></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong></strong>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
+            <div class="carousel-dots" id="carousel-dots"></div>
         </section>
 
-        <section id="services">
+        <!-- SERVICES SECTION -->
+        <section class="services">
             <div class="container">
-                <div class="section-title">
-                    <h2>Our <span>Sacred Services</span></h2>
-                    <p>Comprehensive Vedic astrology services to guide you through every aspect of life with ancient wisdom and modern understanding.</p>
-                </div>
+                <h2 class="section-title">Our Sacred Services</h2>
+                <p class="section-subtitle">Comprehensive Vedic astrology services to guide you through every aspect of life with ancient wisdom and modern understanding.</p>
                 <div class="services-grid">
-                    <div class="service-card">
-                        <div class="icon">★</div>
-                        <h3>Birth Chart Reading</h3>
-                        <p>Complete analysis of your birth chart (Kundali) with planetary positions and their effects on your life.</p>
-                        <div class="service-footer">
-                            <span class="duration">45 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">💼</div>
-                        <h3>Career Guidance</h3>
-                        <p>Discover your ideal career path and professional success through astrological insights.</p>
-                        <div class="service-footer">
-                            <span class="duration">60 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">❤️</div>
-                        <h3>Love & Relationships</h3>
-                        <p>Find compatibility, resolve relationship issues, and discover your soulmate through Vedic matching.</p>
-                        <div class="service-footer">
-                            <span class="duration">50 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">💰</div>
-                        <h3>Financial Astrology</h3>
-                        <p>Get insights on wealth, investments, and financial growth based on planetary influences.</p>
-                        <div class="service-footer">
-                            <span class="duration">45 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">👶</div>
-                        <h3>Child Astrology</h3>
-                        <p>Name suggestions, future predictions, and guidance for your child's bright future.</p>
-                        <div class="service-footer">
-                            <span class="duration">40 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                         <div class="icon">🏠</div>
-                        <h3>Vastu Consultation</h3>
-                        <p>Home and office Vastu guidance to bring positive energy and prosperity.</p>
-                        <div class="service-footer">
-                            <span class="duration">75 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">🏢</div>
-                        <h3>Business Astrology</h3>
-                        <p>Launch dates, partnership compatibility, and business growth strategies.</p>
-                        <div class="service-footer">
-                            <span class="duration">90 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">📅</div>
-                        <h3>Muhurat Selection</h3>
-                        <p>Find the most auspicious time for important life events and ceremonies.</p>
-                        <div class="service-footer">
-                            <span class="duration">30 mins</span>
-                            <a href="form.html" class="btn">Book Now</a>
-                        </div>
-                    </div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-star"></i></div><div><h3>Birth Chart Reading</h3><p>Complete analysis of your birth chart (Kundali) with planetary positions and their effects on your life.</p></div><div class="card-footer"><span class="duration">45 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-briefcase"></i></div><div><h3>Career Guidance</h3><p>Discover your ideal career path and professional success through astrological insights.</p></div><div class="card-footer"><span class="duration">60 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-heart"></i></div><div><h3>Love & Relationships</h3><p>Find compatibility, resolve relationship issues, and discover your soulmate through Vedic matching.</p></div><div class="card-footer"><span class="duration">50 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-coins"></i></div><div><h3>Financial Astrology</h3><p>Get insights on wealth, investments, and financial growth based on planetary influences.</p></div><div class="card-footer"><span class="duration">45 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-child"></i></div><div><h3>Child Astrology</h3><p>Name suggestions, future predictions, and guidance for your child's bright future.</p></div><div class="card-footer"><span class="duration">40 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-home"></i></div><div><h3>Vastu Consultation</h3><p>Home and office Vastu guidance to bring positive energy and prosperity.</p></div><div class="card-footer"><span class="duration">75 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-building"></i></div><div><h3>Business Astrology</h3><p>Launch dates, partnership compatibility, and business growth strategies.</p></div><div class="card-footer"><span class="duration">90 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
+                    <div class="service-card"><div class="icon"><i class="fas fa-calendar-alt"></i></div><div><h3>Muhurat Selection</h3><p>Find the most auspicious time for important life events and ceremonies.</p></div><div class="card-footer"><span class="duration">30 mins</span><a href="form.html" class="btn">Book Now</a></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="container">
-            <div class="about-section">
+        <!-- ABOUT & EXPERTISE SECTION -->
+        <section class="about-expertise-section">
+            <div class="container about-expertise">
                 <div class="about-content">
-                    <span class="tag">About Khushi Astrologer</span>
-                    <h2>Your Trusted Guide to <br><span>Cosmic Wisdom</span></h2>
+                    <p style="color: #777;">About Khushi Astrologer</p>
+                    <h2>Your Trusted Guide to<br>Cosmic Wisdom</h2>
                     <p>Namaste! I am Khushi, a dedicated Vedic astrologer with over 15 years of experience in guiding souls through the ancient science of Jyotish. My journey began with a deep spiritual calling to help people understand their divine purpose and navigate life's challenges with cosmic wisdom.</p>
                     <p>Trained under renowned masters and certified in classical Vedic astrology, I combine traditional knowledge with intuitive insights to provide accurate and compassionate guidance.</p>
                 </div>
                 <div class="expertise-box">
-                    <span class="star-icon">⭐</span>
+                    <div class="icon-star"><i class="fas fa-star"></i></div>
                     <h3>Areas of Expertise</h3>
-                    <ul class="expertise-list">
-                        <li>Vedic Birth Chart Analysis</li>
-                        <li>Predictive Astrology</li>
-                        <li>Relationship Compatibility</li>
-                        <li>Career & Financial Guidance</li>
-                        <li>Spiritual Counseling</li>
-                        <li>Vastu Shastra</li>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Vedic Birth Chart Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Predictive Astrology</li>
+                        <li><i class="fas fa-check-circle"></i> Relationship Compatibility</li>
+                        <li><i class="fas fa-check-circle"></i> Career & Financial Guidance</li>
+                        <li><i class="fas fa-check-circle"></i> Spiritual Counseling</li>
+                        <li><i class="fas fa-check-circle"></i> Vastu Shastra</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="container">
-             <div class="mentor-section">
-                <div class="mentor-image">
-                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1045,fit=crop,trim=0;1043.4522821576763;0;697.6929460580913/A3QlKPKKE7ulbQOy/img_9143-mxB21LNaoOSRk9jZ.JPG" alt="Khushi Astrologer">
-                </div>
+        <!-- MENTOR SECTION -->
+        <section class="mentor-section-bg" style="padding-top: 0;">
+            <div class="container mentor-section">
+                <div class="mentor-image"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1045,fit=crop,trim=0;1043.4522821576763;0;697.6929460580913/A3QlKPKKE7ulbQOy/img_9143-mxB21LNaoOSRk9jZ.JPG" alt="Khushi, The Mentor"></div>
                 <div class="mentor-content">
-                    <h2>Meet Your Mentor, <br><span>Khushi</span></h2>
+                    <h2>Meet Your Mentor,<br>Khushi</h2>
                     <p>With a heart full of compassion and a mind steeped in the ancient texts, Khushi bridges the gap between cosmic knowledge and modern life. Her intuitive approach helps demystify complex astrological concepts, making them accessible and practical for everyone.</p>
                     <p>She believes that astrology is not about rigid predictions, but about empowerment—giving you the tools to understand your strengths, navigate your challenges, and consciously create a life aligned with your soul's purpose.</p>
-                    <a href="#" class="btn">Consult with Khushi</a>
+                    <a href="form.html" class="btn">Consult with Khushi</a>
                 </div>
             </div>
         </section>
 
-        <section class="featured-section">
+        <!-- TRUSTED BY SECTION -->
+        <section class="trusted">
             <div class="container">
-                <div class="section-title">
-                     <h2>Trusted By & <span>Featured In</span></h2>
-                </div>
-                <div class="featured-logos">
-                   <span><img src="images/logo1.svg" alt="Company Logo 1" class="company-logo" height="80">></span>
-                   <span><img src="images/logo2.png" alt="Company Logo 2" class="company-logo" height="80"></span>
-                   <span><img src="images/logo3.png" alt="Company Logo 3" class="company-logo" height="80"></span>
-                </div>
-            </div>5+
+                 <h2 class="section-title">Trusted By & Featured In</h2>
+                 <div class="logos">
+                     <img src="images/logo1.svg" alt="Shemaroo TV">
+                     <img src="images/logo2.png" alt="Glamourous Magazine">
+                     <img src="images/logo3.png" alt="Amar Ujala">
+                 </div>
+            </div>
         </section>
-        
-         <section id="awards">
+
+        <!-- AWARDS SECTION -->
+        <section class="awards">
             <div class="container">
-                <div class="section-title">
-                    <h2>Awards & <span>Recognition</span></h2>
-                    <p>Acknowledged for dedication and excellence in the field of Vedic Astrology.</p>
-                </div>
+                <h2 class="section-title">Awards & Recognition</h2>
+                <p class="section-subtitle">Acknowledged for dedication and excellence in the field of Vedic Astrology.</p>
                 <div class="awards-grid">
-                    <div class="award-item">
-                        <div class="award-icon">Award 1</div>
-                        <h3>Jyotish Ratna Award</h3>
-                        <p>For outstanding contribution to predictive astrology.</p>
-                    </div>
-                     <div class="award-item">
-                        <div class="award-icon">Award 2</div>
-                        <h3>Vedic Excellence Prize</h3>
-                        <p>Recognized for authentic and compassionate guidance.</p>
-                    </div>
-                     <div class="award-item">
-                        <div class="award-icon">Award 3</div>
-                        <h3>Cosmic Healer Title</h3>
-                        <p>Awarded for spiritual counseling and healing services.</p>
-                    </div>
-                     <div class="award-item">
-                        <div class="award-icon">Award 4</div>
-                        <h3>Astrologer of the Year</h3>
-                        <p>Voted by the International Astrology Federation.</p>
-                    </div>
+                    <div class="award-card"><p class="award-title">Award 1</p><h3>Jyotish Ratna Award</h3><p>For outstanding contribution to predictive astrology.</p></div>
+                    <div class="award-card"><p class="award-title">Award 2</p><h3>Vedic Excellence Prize</h3><p>Recognized for authentic and compassionate guidance.</p></div>
+                    <div class="award-card"><p class="award-title">Award 3</p><h3>Cosmic Healer Title</h3><p>Awarded for spiritual counseling and healing services.</p></div>
+                    <div class="award-card"><p class="award-title">Award 4</p><h3>Astrologer of the Year</h3><p>Voted by the International Astrology Federation.</p></div>
                 </div>
             </div>
         </section>
 
-        <section id="podcast">
-             <div class="container">
-                <div class="section-title">
-                    <h2>Wisdom On Air: <span>Our Videos</span></h2>
-                    <p>Tune in to our videos where we explore cosmic insights, planetary transits, and spiritual wisdom to guide your journey.</p>
-                </div>
-                <div class="podcast-grid">
-                    <div class="video-item">
-                       <iframe src="https://www.youtube.com/embed/5-NZQcEz_7A" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-item">
-                       <iframe src="https://www.youtube.com/embed/BV_LKDkliFM" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-item">
-                        <iframe src="https://www.youtube.com/embed/MrB4WMMm1MY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                     <div class="video-item">
-                        <iframe src="https://www.youtube.com/embed/s0IJH9NCKGk" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
+        <!-- VIDEOS SECTION -->
+        <section class="videos">
+            <div class="container">
+                <h2 class="section-title">Wisdom On Air: Our Videos</h2>
+                <p class="section-subtitle">Tune in to our videos where we explore cosmic insights, planetary transits, and spiritual wisdom to guide your journey.</p>
+                 <div class="videos-grid">
+                    <a href="https://www.youtube.com/watch?v=5-NZQcEz_7A" target="_blank" class="video-thumb"><img src="https://img.youtube.com/vi/5-NZQcEz_7A/hqdefault.jpg" alt="Video 1"><div class="play-button"><i class="fas fa-play"></i></div></a>
+                    <a href="https://www.youtube.com/watch?v=BV_LKDkliFM" target="_blank" class="video-thumb"><img src="https://img.youtube.com/vi/BV_LKDkliFM/hqdefault.jpg" alt="Video 2"><div class="play-button"><i class="fas fa-play"></i></div></a>
+                    <a href="https://www.youtube.com/watch?v=MrB4WMMm1MY" target="_blank" class="video-thumb"><img src="https://img.youtube.com/vi/MrB4WMMm1MY/hqdefault.jpg" alt="Video 3"><div class="play-button"><i class="fas fa-play"></i></div></a>
+                    <a href="https://www.youtube.com/watch?v=s0IJH9NCKGk" target="_blank" class="video-thumb"><img src="https://img.youtube.com/vi/s0IJH9NCKGk/hqdefault.jpg" alt="Video 4"><div class="play-button"><i class="fas fa-play"></i></div></a>
                 </div>
             </div>
         </section>
-        
-        <section id="contact">
-             <div class="container">
-                 <div class="section-title">
-                    <h2>Connect with <span>Divine Guidance</span></h2>
-                    <p>Ready to discover your cosmic destiny? Reach out for personalized astrological consultation and spiritual guidance.</p>
-                </div>
-                <div class="contact-wrapper">
-                    <form class="contact-form">
+
+        <!-- CONTACT SECTION -->
+        <section class="contact">
+            <div class="container">
+                <h2 class="section-title">Connect with Divine Guidance</h2>
+                <p class="section-subtitle">Ready to discover your cosmic destiny? Reach out for personalized astrological consultation and spiritual guidance.</p>
+                <div class="contact-grid">
+                    <div class="contact-form">
                         <h3><i class="fas fa-edit"></i> Book Your Consultation</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="full-name">Full Name *</label>
-                                <input type="text" id="full-name" placeholder="Enter your full name">
+                        <form>
+                            <div class="form-grid">
+                                <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" placeholder="Enter your full name" required></div>
+                                <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" placeholder="+918700030288" required></div>
+                                <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" placeholder="your.email@example.com" required></div>
+                                <div class="form-group"><label for="dob">Date of Birth *</label><input type="text" id="dob" placeholder="mm/dd/yyyy" required></div>
+                                <div class="form-group"><label for="tob">Time of Birth</label><input type="text" id="tob" placeholder="--:--"></div>
+                                <div class="form-group"><label for="pob">Place of Birth</label><input type="text" id="pob" placeholder="City, State, Country"></div>
+                                <div class="form-group full-width"><label for="service">Service Required *</label><select id="service" required><option value="">Select a service</option><option value="birth-chart">Birth Chart Reading</option><option value="career">Career Guidance</option></select></div>
+                                <div class="form-group full-width"><label for="questions">Questions/Concerns</label><textarea id="questions" placeholder="Please share your specific questions or areas of concern..."></textarea></div>
                             </div>
-                             <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" value="+918700030288">
-                            </div>
-                             <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" placeholder="your.email@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="dob">Date of Birth *</label>
-                                <input type="text" id="dob" placeholder="mm/dd/yyyy">
-                            </div>
-                             <div class="form-group">
-                                <label for="tob">Time of Birth</label>
-                                <input type="text" id="tob" placeholder="--:--">
-                            </div>
-                            <div class="form-group">
-                                <label for="pob">Place of Birth</label>
-                                <input type="text" id="pob" placeholder="City, State, Country">
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="service">Service Required *</label>
-                                <select id="service">
-                                    <option>Select a service</option>
-                                </select>
-                            </div>
-                             <div class="form-group full-width">
-                                <label for="concerns">Questions/Concerns</label>
-                                <textarea id="concerns" placeholder="Please share your specific questions or areas of concern..."></textarea>
-                            </div>
-                        </div>
-                         <button type="submit" class="btn">Book Consultation</button>
-                    </form>
-                    <div class="contact-info-sidebar">
-                        <div class="info-box">
-                            <h4>Call Us</h4>
-                            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
-                            <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
-                            <p><small>Available 9 AM - 9 PM (IST)</small></p>
-                        </div>
-                        <div class="info-box">
-                            <h4>Email Us</h4>
-                            <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
-                            <p><small>consultations@astrokhushi.com</small></p>
-                             <p><small>We reply within 24 hours</small></p>
-                        </div>
-                        <div class="info-box">
-                            <h4>Visit Us</h4>
-                            <p><i class="fas fa-map-marker-alt"></i> C-5, Ajay Enclave, Tihar Village, New Delhi, Delhi, 110018</p>
-                            <p><small>By appointment only</small></p>
-                        </div>
-                        <div class="info-box">
-                            <h4>Consultation Hours</h4>
-                            <p><i class="fas fa-clock"></i> Mon - Sat: 9 AM - 9 PM</p>
-                            <p><i class="fas fa-clock"></i> Sunday: 10 AM - 6 PM</p>
-                            <p><small>All times in IST</small></p>
-                        </div>
-                        <div class="info-box highlight">
-                             <h4>Need Immediate Guidance?</h4>
-                             <a href="#" class="btn"><i class="fas fa-phone-alt"></i> Call Now</a>
-                        </div>
+                            <button type="submit" class="btn">Book Consultation</button>
+                        </form>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-details-box"><h3>Call Us</h3><p><i class="fas fa-phone-alt"></i> +91 8700030288</p><p style="font-size: 0.9rem; color: #777;">Available 9 AM - 9 PM (IST)</p></div>
+                        <div class="contact-details-box"><h3>Email Us</h3><p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p><p><i class="fas fa-envelope"></i> consultations@astrokhushi.com</p><p style="font-size: 0.9rem; color: #777;">We reply within 24 hours</p></div>
+                        <div class="contact-details-box"><h3>Visit Us</h3><p><i class="fas fa-map-marker-alt"></i> C-5, Ajay Enclave, Tihar Village, New Delhi, Delhi, 110018</p><p style="font-size: 0.9rem; color: #777;">By appointment only</p></div>
+                        <div class="contact-details-box"><h3>Consultation Hours</h3><p><i class="fas fa-clock"></i> Mon - Sat: 9 AM - 9 PM</p><p><i class="fas fa-clock"></i> Sunday: 10 AM - 6 PM</p></div>
+                        <div class="contact-details-box"><h3>Need Immediate Guidance?</h3><a href="tel:+918700030288" class="btn"><i class="fas fa-phone-alt"></i> Call Now</a></div>
                     </div>
                 </div>
             </div>
         </section>
-        
     </main>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-wrapper">
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-main">
+            <div class="container footer-grid">
                 <div class="footer-about">
-                    <div class="logo">
-                         <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo">
-                        <div class="logo-text">
-                            <strong>Khushi Astrologer</strong>
-                            <span>Vedic Astrology Expert</span>
-                        </div>
-                    </div>
-                    <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological consultations and spiritual guidance.</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/khushiastrology/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/khushi_astrologer/"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@KhushiAstrologer/"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    <div class="logo"><img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo"><div class="logo-text" style="color: #fff;"><strong>Khushi Astrologer</strong><span style="color: #eee;">Vedic Astrology Expert</span></div></div>
+                    <p>Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological and spiritual guidance.</p>
+                    <div class="social-icons"><a href="https://www.facebook.com/khushiastrology/"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/thekhushiastrologer/"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@KhushiAstrologer"><i class="fab fa-youtube"></i></a></div>
                 </div>
                 <div class="footer-links">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="service.html">Services</a></li>
-                        <li><a href="about.html">About Khushi</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="course.html">Courses</a></li>
-                    </ul>
+                    <h4>Quick Links</h4>
+                    <ul><li><a href="index.html">Home</a></li><li><a href="service.html">Services</a></li><li><a href="about.html">About Khushi</a></li><li><a href="contact.html">Contact</a></li><li><a href="course.html">Courses</a></li></ul>
                 </div>
-                <div class="footer-contact">
-                     <h3 class="footer-title">Contact Info</h3>
-                     <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
-                     <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
-                     <p><i class="fas fa-map-marker-alt"></i> C-5, Ajay Enclave, Tihar Village, New Delhi, Delhi, 110018</p>
+                <div class="footer-info">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone-alt"></i> +91 8700030288</p>
+                    <p><i class="fas fa-envelope"></i> contact@astrokhushi.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> C-5, Ajay Enclave, Tihar Village, New Delhi, 110018</p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                 <span>© 2025 Khushi Astrologer. All rights reserved. | Vedic Astrology Services</span>
-                 <div class="footer-bottom-links">
-                      <a href="privacypolicy.html">Privacy Policy</a>
-                     <a href="TermsCondition.html">Terms of Service</a>
-                     <a href="refundpolicy.html">Refund Policy </a>
-                 </div>
+        </div>
+        <div class="footer-sub">
+            <div class="container">
+                <p>&copy; 2025 Khushi Astrologer. All rights reserved. | Vedic Astrology Services</p>
+                <div class="footer-sub-links"><a href="privacypolicy.html">Privacy Policy</a><a href="TermsCondition.html">Terms of Service</a><a href="refundpolicy.html">Refund Policy</a></div>
             </div>
         </div>
     </footer>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let slideIndex = 0;
-        const slides = document.querySelectorAll(".carousel-slide");
-        const dots = document.querySelectorAll(".dot");
-        let slideInterval;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mainNav = document.getElementById('main-nav');
+            mobileToggle.addEventListener('click', () => mainNav.classList.toggle('active'));
 
-        function showSlide(n) {
-            slideIndex = n >= slides.length ? 0 : n < 0 ? slides.length - 1 : n;
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dotsContainer = document.getElementById('carousel-dots');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentSlide = 0;
+            let slideInterval;
 
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            if (slides.length > 0) {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                });
+                const dots = document.querySelectorAll('.dot');
 
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
-        }
-        
-        function plusSlides(n) {
-            showSlide(slideIndex += n);
-            resetInterval();
-        }
+                function goToSlide(slideIndex) {
+                    slides[currentSlide].classList.remove('active');
+                    dots[currentSlide].classList.remove('active');
+                    currentSlide = (slideIndex + slides.length) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                    dots[currentSlide].classList.add('active');
+                    resetInterval();
+                }
 
-        function currentSlide(n) {
-            showSlide(slideIndex = n);
-            resetInterval();
-        }
+                function nextSlide() { goToSlide(currentSlide + 1); }
+                function prevSlide() { goToSlide(currentSlide - 1); }
+                function startInterval() { slideInterval = setInterval(nextSlide, 5000); }
+                function resetInterval() { clearInterval(slideInterval); startInterval(); }
 
-        function startInterval() {
-            slideInterval = setInterval(() => {
-                showSlide(++slideIndex);
-            }, 5000); 
-        }
-
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-        
-        document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
-        document.querySelector('.next').addEventListener('click', () => plusSlides(1));
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => currentSlide(index));
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                startInterval();
+            }
         });
-
-        showSlide(slideIndex);
-        startInterval();
-    });
-</script>
+    </script>
 </body>
 </html>
