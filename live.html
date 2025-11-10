@@ -94,7 +94,21 @@
   .modal .close{ position:absolute; right:14px; top:10px; font-size:22px; color:var(--maroon); cursor:pointer; }
   .modal h2{ margin:6px 0 4px; color:var(--maroon) }
   .modal .by{ margin:0 0 12px; color:#6b3b36; font-weight:600 }
-  .modal img{ width:100%; height:260px; object-fit:cover; border-radius:6px; margin-bottom:12px; }
+  /* removed modal image as requested */
+  .modal .info {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin:8px 0 14px;
+  }
+  .modal .info .item {
+    background:var(--gold);
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:600;
+    color:var(--maroon);
+    font-size:0.95rem;
+  }
   .modal .syllabus{ text-align:left; margin:10px 0 0; padding-left:18px; }
   .modal .syllabus li{ margin:8px 0; line-height:1.55; color:#333 }
   .modal .modal-actions{ margin-top:14px; display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap }
@@ -127,9 +141,7 @@
   </div>
   <nav>
     <a href="index.html">Home</a>
-    <a href="live.html">Live Classes </a>
-     <a href="about.html">About </a>
-    <a href="contact.html">Contact </a>
+    <a href="live.html">live classes</a>
     <a href="course.html">Courses</a>
     <a class="contact-btn" href="tel:+918700030288">Get Consultation</a>
   </nav>
@@ -138,7 +150,7 @@
 <!-- PAGE HEAD -->
 <section class="page-head">
   <h1>Your Journey of Learning Begins Here</h1>
-  <p>Click any course or the View Syllabus button to open full syllabus and enroll.</p>
+  <p>Click any course or the View Syllabus button to open full syllabus and enroll. Each course: <strong>30 days</strong> • <strong>Live classes + Lifetime video access</strong></p>
 </section>
 
 <!-- GRID -->
@@ -152,9 +164,17 @@
     <span class="close" id="modalClose">&times;</span>
     <h2 id="modalTitle"></h2>
     <div class="by" id="modalBy"></div>
-    <img id="modalImg" src="" alt="">
+
+    <!-- course info boxes (Duration + Mode + Certificate) -->
+    <div class="info">
+      <div class="item">Duration: 30 days</div>
+      <div class="item">Live classes + Lifetime video access</div>
+      <div class="item">Certificate on completion</div>
+    </div>
+
     <h3 style="margin:10px 0 6px;color:#4b2b2b">Syllabus</h3>
     <ol class="syllabus" id="modalList"></ol>
+
     <div class="modal-actions">
       <button class="close-text" id="modalCloseText">Close</button>
       <button class="enroll-btn" id="modalEnroll">Enroll Now</button>
@@ -173,18 +193,18 @@
     <a href="index.html">Home</a>
     <a href="live.html">Live Classes</a>
     <a href="about.html">About </a>
-    <a href="form.html"> Get Your Horoscope</a>
+    <a href="form.html">Get Your Horoscope</a>
   </div>
   <div class="col">
     <h4>Contact</h4>
     <p>📞 +91 8700030288</p>
     <p>✉️ contact@astrokhushi.com</p>
-    <p>📍  C-5, Ajay Enclave, Tihar Village, New Delhi, 110018 </p>
+    <p>📍 C-5, Ajay Enclave, Tihar Village, New Delhi, 110018</p>
   </div>
 </footer>
 
 <script>
-/* Full data for 13 courses (images + full syllabus) */
+/* Full data for all courses (images + full syllabus) */
 const courses = [
   {
     id: "lama-fera",
@@ -449,21 +469,18 @@ courses.forEach((c, idx) => {
       </div>
     </div>
   `;
-  // clicking anywhere on card or the view button opens modal
+  // clicking anywhere on card or view opens modal (except enroll)
   el.addEventListener('click', (e)=> {
-    // don't trigger when clicking Enroll (we'll handle separately)
     if(e.target.classList.contains('btn-enroll')) return;
     openModal(idx);
   });
-  // view button explicitly
   el.querySelector('.btn-view').addEventListener('click', (ev)=>{
     ev.stopPropagation();
     openModal(idx);
   });
-  // enroll button (default action here: navigate to anchor; replace with real URL)
   el.querySelector('.btn-enroll').addEventListener('click', (ev)=>{
     ev.stopPropagation();
-    // Replace with real course enroll link if available:
+    // Replace with real enroll link if available
     window.location.href = `#enroll-${c.id}`;
   });
 
@@ -474,7 +491,6 @@ courses.forEach((c, idx) => {
 const backdrop = document.getElementById('backdrop');
 const modalTitle = document.getElementById('modalTitle');
 const modalBy = document.getElementById('modalBy');
-const modalImg = document.getElementById('modalImg');
 const modalList = document.getElementById('modalList');
 const modalEnroll = document.getElementById('modalEnroll');
 const modalClose = document.getElementById('modalClose');
@@ -484,8 +500,6 @@ function openModal(idx){
   const c = courses[idx];
   modalTitle.textContent = c.name;
   modalBy.textContent = c.by;
-  modalImg.src = c.img;
-  modalImg.alt = c.name;
   modalList.innerHTML = c.syllabus.map(s => `<li>${s}</li>`).join('');
   modalEnroll.onclick = ()=> { window.location.href = `#enroll-${c.id}`; }; // change to actual enroll URL if available
   backdrop.style.display = 'flex';
