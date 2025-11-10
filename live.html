@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Khushi Astrologer — Courses</title>
+<style>
+  :root{
+    --maroon:#a11717;
+    --dark:#661414;
+    --cream:#fff6ee;
+    --card:#fff;
+    --gold:#f7e5c7;
+    --text:#3b1a0e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--cream);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* HEADER */
+  header{
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    padding:12px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .logo {
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .logo img { height:48px; border-radius:6px; }
+  .brand { font-weight:700; color:var(--maroon); font-size:1.15rem; }
+  nav a{ color:#444; text-decoration:none; margin-left:16px; font-weight:500 }
+  .contact-btn{ background:var(--maroon); color:#fff; padding:8px 14px; border-radius:6px; font-weight:600; text-decoration:none }
+
+  /* PAGE HEAD */
+  .page-head{ text-align:center; padding:40px 20px 10px; }
+  .page-head h1{ margin:0; font-size:32px; color:var(--maroon); }
+  .page-head p{ margin:8px 0 0; color:#6b3b36 }
+
+  /* GRID */
+  .wrap{ max-width:1200px; margin:28px auto; padding:0 20px; }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.07);
+    transition:transform .28s ease, box-shadow .28s ease;
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+  }
+  .card:hover{ transform:translateY(-8px); box-shadow:0 18px 36px rgba(0,0,0,0.12); }
+  .card .imgwrap{ height:200px; background:#eee; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .card .imgwrap img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; display:block; }
+  .card:hover .imgwrap img{ transform:scale(1.05); }
+  .card .content{ padding:16px 18px; display:flex; flex-direction:column; align-items:stretch; gap:8px; }
+  .card h3{ margin:0; color:var(--maroon); font-size:1.05rem; text-align:center; }
+  .card p.lead{ margin:0; text-align:center; color:#554444; font-size:0.95rem; min-height:40px; }
+  .buttons{ display:flex; gap:10px; justify-content:center; margin-top:8px; }
+  .btn-view{
+    background:transparent; border:1.5px solid var(--maroon); color:var(--maroon); padding:8px 12px; border-radius:8px; font-weight:600; cursor:pointer;
+  }
+  .btn-enroll{
+    background:var(--maroon); color:#fff; border:none; padding:8px 12px; border-radius:8px; font-weight:700; cursor:pointer;
+  }
+
+  /* MODAL */
+  .backdrop{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.56); z-index:1000; padding:20px;
+  }
+  .modal{
+    width:100%; max-width:880px; background:#fff; border-radius:10px; padding:20px 22px; max-height:92vh; overflow:auto; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35);
+  }
+  .modal .close{ position:absolute; right:14px; top:10px; font-size:22px; color:var(--maroon); cursor:pointer; }
+  .modal h2{ margin:6px 0 4px; color:var(--maroon) }
+  .modal .by{ margin:0 0 12px; color:#6b3b36; font-weight:600 }
+  .modal img{ width:100%; height:260px; object-fit:cover; border-radius:6px; margin-bottom:12px; }
+  .modal .syllabus{ text-align:left; margin:10px 0 0; padding-left:18px; }
+  .modal .syllabus li{ margin:8px 0; line-height:1.55; color:#333 }
+  .modal .modal-actions{ margin-top:14px; display:flex; gap:12px; justify-content:flex-end; flex-wrap:wrap }
+  .modal .enroll-btn { background:var(--maroon); color:#fff; padding:10px 16px; border-radius:8px; border:none; font-weight:700; cursor:pointer }
+  .modal .close-text { background:transparent; border:1px solid #ccc; padding:8px 14px; border-radius:8px; cursor:pointer }
+
+  /* FOOTER */
+  footer{ background:var(--dark); color:#fff; padding:28px 5%; margin-top:30px; display:flex; gap:18px; flex-wrap:wrap; justify-content:space-between }
+  footer .col{ flex:1 1 220px }
+  footer a{ color:#ffd9b3; text-decoration:none; display:block; margin:6px 0 }
+
+  /* Responsive */
+  @media(max-width:1000px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+  @media(max-width:640px){
+    header{ padding:12px 6% }
+    .grid{ grid-template-columns:1fr; gap:18px }
+    .card .imgwrap{ height:180px }
+    .modal img{ height:180px }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <!-- use your site logo if you want -->
+    <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="logo" />
+    <div class="brand">Khushi Astrologer</div>
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="live.html">Live Classes </a>
+     <a href="about.html">About </a>
+    <a href="contact.html">Contact </a>
+    <a href="course.html">Courses</a>
+    <a class="contact-btn" href="tel:+918700030288">Get Consultation</a>
+  </nav>
+</header>
+
+<!-- PAGE HEAD -->
+<section class="page-head">
+  <h1>Your Journey of Learning Begins Here</h1>
+  <p>Click any course or the View Syllabus button to open full syllabus and enroll.</p>
+</section>
+
+<!-- GRID -->
+<div class="wrap">
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- MODAL -->
+<div class="backdrop" id="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <span class="close" id="modalClose">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <div class="by" id="modalBy"></div>
+    <img id="modalImg" src="" alt="">
+    <h3 style="margin:10px 0 6px;color:#4b2b2b">Syllabus</h3>
+    <ol class="syllabus" id="modalList"></ol>
+    <div class="modal-actions">
+      <button class="close-text" id="modalCloseText">Close</button>
+      <button class="enroll-btn" id="modalEnroll">Enroll Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="col">
+    <h4>Astro Khushi</h4>
+    <p>Guiding souls through ancient Vedic wisdom for over 15 years. Personalized consultations and spiritual courses.</p>
+  </div>
+  <div class="col">
+    <h4>Quick Links</h4>
+    <a href="index.html">Home</a>
+    <a href="live.html">Live Classes</a>
+    <a href="about.html">About </a>
+    <a href="form.html"> Get Your Horoscope</a>
+  </div>
+  <div class="col">
+    <h4>Contact</h4>
+    <p>📞 +91 8700030288</p>
+    <p>✉️ contact@astrokhushi.com</p>
+    <p>📍  C-5, Ajay Enclave, Tihar Village, New Delhi, 110018 </p>
+  </div>
+</footer>
+
+<script>
+/* Full data for 13 courses (images + full syllabus) */
+const courses = [
+  {
+    id: "lama-fera",
+    name: "Lama Fera Healing Classes",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=807,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757507624681-YyvDQzNoM6sOgzgp.png",
+    by: "Lama Fera Healing Classes by Khushi Astrologer",
+    syllabus: [
+      "Introduction & Benefits – Understand the power of Lama Fera healing",
+      "Lama Fera Kit Explanation – Complete guide to your healing tools",
+      "Buddhist Anapanasati Meditation – Mindfulness and breathing techniques",
+      "7 Chakra Information – Learn the energy centers of the body",
+      "Lama Fera Healer Level Symbols – Master essential symbols for healing",
+      "Buddha Mantra Meditation – Chanting for peace and energy",
+      "Attunement Process Level 1 & 2 – Step-by-step energy alignment",
+      "Attunement Process Master Level 3 – Advanced energy techniques",
+      "Power Master Symbols – Symbols to enhance your healing power",
+      "Self Healing – Heal yourself physically, mentally, and spiritually",
+      "Client Healing (Level 1–2–3 Process) – Healing others professionally",
+      "Black Magic Removal Process – Protect yourself and clients",
+      "Healing for Self, Client, Home, Shop, Office – Complete energy balancing",
+      "Remove Pain or Karmic Blockages – Release energy blockages and negative karma"
+    ]
+  },
+  {
+    id: "vastu",
+    name: "Vastu Shastra Classes",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=767,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757508017039-AMqDv7KqELIJ3WpN.png",
+    by: "Vastu Classes by Khushi Astrologer",
+    syllabus: [
+      "Introduction to Vastu Shastra and Origin of Vastu",
+      "Importance and Objectives of Vastu Shastra Course",
+      "The Origin of Vastu Purush",
+      "Instruments used in Vastu Shastra",
+      "Types of Vastu and Role of Vastu",
+      "Residential Vastu, Commercial Vastu and Religious Vastu",
+      "Understanding Natural Forces and Energies in Vastu",
+      "Solar Energy, Magnetic Force and Gravitational Force",
+      "Introduction to Five Elements (Panch Mahabhoot)",
+      "Earth, Fire, Water, Air, Sky — Relationship between Five Elements",
+      "Directions in Vastu — Modern and Traditional Divisions",
+      "Selection of Site: Surroundings and Environment",
+      "Testing of Land and Slope of Land",
+      "Types and Best Shape of Plots as per Vastu",
+      "Facing of Plots and Adjoining Roads",
+      "Extension and Cut of Land",
+      "Veda Shul — Obstacles and Hindrances",
+      "9-grid, 25-grid and 81-grid Vastu Divisions",
+      "Brief Study of Directions of Rooms according to Residential Vastu",
+      "Pooja Room as per Vastu; Study Room; Safe Room / Locker Room",
+      "Master Bedroom; Young Couple’s Bedroom; Children’s Bedroom; Guest Bedroom & Dining",
+      "Toilet and Bathroom Zones; Main Gate; Staircase; Foundation & Height",
+      "Commercial Vastu and Principles; Remedies without Demolition",
+      "Vedic Remedies — Mantra & Yantra; Gemstone & Pyramid Remedies",
+      "Maps, Drawings and Practical Vastu Analysis"
+    ]
+  },
+  {
+    id: "basic-astrology",
+    name: "Basic Astrology Classes",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=762,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757508625956-mP43vy92kXizLnaG.png",
+    by: "Vedic Basic Astrology Classes by Khushi Astrologer",
+    syllabus: [
+      "Introduction to Astrology",
+      "Planetary Influence Basics",
+      "Horoscope Reading Skills",
+      "Kundali Analysis Techniques",
+      "Dasha System Insights",
+      "House Significance Study",
+      "Transits and Progressions",
+      "Remedial Astrology Practices",
+      "Compatibility Analysis Methods",
+      "Advanced Predictive Techniques",
+      "Relationship of Astrology with Vastu",
+      "Comparison of Sidereal and Western Zodiacs",
+      "How to Make a Birth Chart",
+      "Astronomy Basics and Types of Horoscopes",
+      "Zodiac Signs study"
+    ]
+  },
+  {
+    id: "vedic-numerology",
+    name: "Vedic Numerology Classes",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/lucid_origin_a_premium_banner_design_for_vedic_numerology_clas_2-YbN4Oq8DqDID7V70.jpg",
+    by: "Vedic Numerology Classes by Khushi Astrologer",
+    syllabus: [
+      "2 Months Duration Course",
+      "Introduction to Numerology",
+      "History of Numerology",
+      "Understanding Destiny and Personality Numbers",
+      "How to Create Vedic Grid",
+      "Understanding 9 Numbers and Association with Planets",
+      "Detailed Study of 9 Numbers",
+      "Compatibility and Relationship Numbers",
+      "Understanding Rows and Columns",
+      "Days, Colours, and Numbers",
+      "Name Numerology and Name Correction",
+      "Mobile Numerology"
+    ]
+  },
+  {
+    id: "adv-astrology-a",
+    name: "Advanced Astrology — Nakshatras",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757508630798-m6L2xNkZMDIl7xx5.png",
+    by: "Advanced Astrology Classes (Nakshatras) by Khushi Astrologer",
+    syllabus: [
+      "Study of 27 Nakshatras — Ashvini to Revati",
+      "Understanding main star, classifications and significance",
+      "Example Charts Analysis — Famous Personalities",
+      "Predictive Astrology Techniques using Nakshatras",
+      "Advanced Chart Reading Skills",
+      "Remedial Measures and Insights"
+    ]
+  },
+  {
+    id: "adv-astrology-b",
+    name: "Advanced Astrology — Techniques & Numerology",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757508630798-m6L2xNkZMDIl7xx5.png",
+    by: "Advanced Astrology — Predictive Techniques & Numerology",
+    syllabus: [
+      "Conjunctions, Aspects and Retro Aspects",
+      "Trines and Major Patterns",
+      "Calculation of Dasha and Application",
+      "Align with Destiny Numbers; Integration with Numerology",
+      "Rasmic Numbers and Relationship Analysis",
+      "Remedies for Numerology Readings; Health Analysis",
+      "Case Studies and Practical Chart Work"
+    ]
+  },
+  {
+    id: "adv-vedic-numerology",
+    name: "Advanced Vedic Numerology",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/lucid_origin_create_a_premium_banner_for_advanced_vedic_numero_2-AMqDV88rB5cqJGJD.jpg",
+    by: "Advanced Vedic Numerology Classes by Khushi Astrologer",
+    syllabus: [
+      "Deep study of name corrections and destiny alignments",
+      "Advanced grid analysis and planetary associations",
+      "Rasmic and relationship number techniques",
+      "Remedies through numbers, gemstones and yantras",
+      "Case studies and advanced compatibility methods",
+      "Practical sessions & real client examples"
+    ]
+  },
+  {
+    id: "angel-therapy",
+    name: "Angel Therapy Course",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757506160572-mv0PyE7k0aCVQn9a.png",
+    by: "Angel Therapy Course by Khushi Astrologer",
+    syllabus: [
+      "What are Tingels?",
+      "Angelic Orbs",
+      "Angelic Hierarchy and Archangels",
+      "Angel Altars and Invoking & Communication with Angels",
+      "Angelic Essential Oils; Angels & Crystals; Angels and Chakras",
+      "Angels in Everyday Life; The Wheel of Angels",
+      "Angel Relation Cards — Messages; Angel Oracle Cards & Spreads",
+      "Angel Cards & Spells; Affirmations of Angels",
+      "Pingels and Numbers; Angels and Flowers",
+      "Violet Flame Angel Meditation"
+    ]
+  },
+  {
+    id: "adv-angel",
+    name: "Advanced Angel Therapy",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/a-premium-banner-advertisement-showcasin_qcjnolz3rtofodvsujknsq_uq77w9txrw6xpoygpxvzrq-YBgjLjDPX0c2Nrym.jpeg",
+    by: "Advanced Angel’s Therapy by Khushi Astrologer",
+    syllabus: [
+      "Know Which Angels to Be Called When",
+      "Know About Your Clairs and How to Open Them",
+      "How to Become Clairvoyant; Meditations to Connect",
+      "Healing a Child, Pet, Self and Protection",
+      "Find Life Purpose with Help of Angels",
+      "Healing for Addictions, Cravings, and Weight Loss",
+      "Chakra Healing with Angels; Detox and Psychic Protection",
+      "Remove Psychic Attacks with Help of Angels"
+    ]
+  },
+  {
+    id: "angel-card",
+    name: "Angel Card Reading Course",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=762,fit=crop/A3QlKPKKE7ulbQOy/lucid_origin_a_serene_spiritual_scene_with_angel_oracle_cards__3-Aq2GyOkgjBie5ppB.jpg",
+    by: "Angel Card Reading Course by Khushi Astrologer",
+    syllabus: [
+      "Working with the Archangels; Knowing the Guardian Angel",
+      "Love Meditation and Healing",
+      "Chakra Association and Colour Healing",
+      "Seven Ray Healing; Fluxa Expansion and Angel Gold",
+      "Angel Numbers and Sensitivity Test",
+      "Psychic Techniques; Manifestation Board; Wish Letter and Release",
+      "Channeling and Auto-writing",
+      "Angel Card & Oracle Board Reading; Pendulum Scanning and Healing",
+      "Cord Cutting and Cleansing the Inner Space"
+    ]
+  },
+  {
+    id: "tarot",
+    name: "Tarot Card Reading",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/lucid_origin_tarot_reading_class_by_khushi_astrologer_mystical_0-AQEevbRgL0h5bN30.jpg",
+    by: "Tarot Card Reading Course by Khushi Astrologer",
+    syllabus: [
+      "Tarot cards — basic introduction and history",
+      "Major Arcana and Minor Arcana — detailed study",
+      "Symbolism and meaning of each card",
+      "Different tarot spreads (1-card, 3-card, Celtic Cross etc.)",
+      "Using intuition & psychic energy in readings",
+      "Yes/No, Relationship, Career & Finance readings",
+      "Clients’ questions — accurate interpretation",
+      "Daily guidance and prediction techniques",
+      "Energy connection and cleansing methods",
+      "Professional tarot reader tips & ethics"
+    ]
+  },
+  {
+    id: "runes",
+    name: "Runes Course",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/lucid_origin_a_mystical_table_setup_with_ancient_rune_stones_s_0-m5K8xV4ry7twlJ9v.jpg",
+    by: "Runes Course by Khushi Astrologer",
+    syllabus: [
+      "What are Runes? The Origin of Runes",
+      "What Can Runes Be Used For? How Do Runes Work?",
+      "Choosing Runes, Storing Your Runes and Using Rune Cloth",
+      "Blank Runes — meaning and use",
+      "Three Rune Layout; Five Rune Layout; Nine Rune Cast",
+      "Runes Casting Tables, Yantra and Frame",
+      "Runes casting techniques and practical interpretation",
+      "Rune spells and readings — practical exercises"
+    ]
+  },
+  {
+    id: "candle",
+    name: "Candle Healing Course",
+    img: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/A3QlKPKKE7ulbQOy/piclumen-1757765726145-AVLxWQoOX3uVLjMG.png",
+    by: "Candle Healing Course by Khushi Astrologer",
+    syllabus: [
+      "Basic Candle Spell Knowledge and Candle Colour Method",
+      "New Moon & Full Moon Spells",
+      "Reading of Flame and Cord Cutting Spell",
+      "Negativity Removal Spell and Protection Spell",
+      "Love Spell, Marriage Spell and Banishing Spell",
+      "Money Spell, 7 Chakras Spell",
+      "Third Partner Removal Spell; Job, Study and Health Spells",
+      "Prayer, Symbols & Ritual Ethics",
+      "Certificate of Candle Spell Basic Course; Video, PDF & Live Zoom Class"
+    ]
+  }
+];
+
+/* render grid */
+const grid = document.getElementById('grid');
+
+courses.forEach((c, idx) => {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.setAttribute('data-idx', idx);
+  el.innerHTML = `
+    <div class="imgwrap"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>
+    <div class="content">
+      <h3>${c.name}</h3>
+      <p class="lead">${c.by}</p>
+      <div class="buttons">
+        <button class="btn-view" data-idx="${idx}">View Syllabus</button>
+        <button class="btn-enroll" data-id="${c.id}">Enroll Now</button>
+      </div>
+    </div>
+  `;
+  // clicking anywhere on card or the view button opens modal
+  el.addEventListener('click', (e)=> {
+    // don't trigger when clicking Enroll (we'll handle separately)
+    if(e.target.classList.contains('btn-enroll')) return;
+    openModal(idx);
+  });
+  // view button explicitly
+  el.querySelector('.btn-view').addEventListener('click', (ev)=>{
+    ev.stopPropagation();
+    openModal(idx);
+  });
+  // enroll button (default action here: navigate to anchor; replace with real URL)
+  el.querySelector('.btn-enroll').addEventListener('click', (ev)=>{
+    ev.stopPropagation();
+    // Replace with real course enroll link if available:
+    window.location.href = `#enroll-${c.id}`;
+  });
+
+  grid.appendChild(el);
+});
+
+/* modal logic */
+const backdrop = document.getElementById('backdrop');
+const modalTitle = document.getElementById('modalTitle');
+const modalBy = document.getElementById('modalBy');
+const modalImg = document.getElementById('modalImg');
+const modalList = document.getElementById('modalList');
+const modalEnroll = document.getElementById('modalEnroll');
+const modalClose = document.getElementById('modalClose');
+const modalCloseText = document.getElementById('modalCloseText');
+
+function openModal(idx){
+  const c = courses[idx];
+  modalTitle.textContent = c.name;
+  modalBy.textContent = c.by;
+  modalImg.src = c.img;
+  modalImg.alt = c.name;
+  modalList.innerHTML = c.syllabus.map(s => `<li>${s}</li>`).join('');
+  modalEnroll.onclick = ()=> { window.location.href = `#enroll-${c.id}`; }; // change to actual enroll URL if available
+  backdrop.style.display = 'flex';
+  backdrop.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  backdrop.style.display = 'none';
+  backdrop.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+modalClose.addEventListener('click', closeModal);
+modalCloseText.addEventListener('click', closeModal);
+backdrop.addEventListener('click', (e)=> { if(e.target === backdrop) closeModal(); });
+document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
+
+</script>
+</body>
+</html>
