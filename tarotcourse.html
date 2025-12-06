@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tarot Card Reading – Basic Course | Khushi Astrologer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #8d1f16;
+      --primary-dark: #6f170f;
+      --bg: #fff7ef;
+      --text: #321b15;
+      --light: #fdf3ea;
+      --border-radius-lg: 18px;
+      --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ---------- HEADER ---------- */
+    header {
+      background: #fffaf4;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-text-title {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--primary-dark);
+    }
+
+    .brand-text-sub {
+      font-size: 12px;
+      margin-top: -4px;
+      opacity: 0.8;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      position: relative;
+      font-weight: 500;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.22s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .nav-phone-icon {
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(141, 31, 22, 0.33);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(141, 31, 22, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(141, 31, 22, 0.35);
+    }
+
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    /* ---------- PAGE HERO / BREADCRUMB ---------- */
+    .page-hero {
+      max-width: 1150px;
+      margin: 32px auto 16px;
+      padding: 0 18px;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: var(--primary-dark);
+      font-weight: 500;
+    }
+
+    .breadcrumb span {
+      opacity: 0.7;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.7fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      line-height: 1.25;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fce9df;
+      color: var(--primary-dark);
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      max-width: 520px;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .hero-meta span {
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 12px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .price-card {
+      background: #fff;
+      border-radius: var(--border-radius-lg);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .price-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(0, 0, 0, 0.55);
+      margin-bottom: 6px;
+    }
+
+    .price-value {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .price-note {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+
+    .price-note.certificate {
+      font-weight: 500;
+      color: var(--primary-dark);
+      opacity: 1;
+      margin-bottom: 14px;
+    }
+
+    .price-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 11px;
+    }
+
+    .price-tags span {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #fff7ef;
+      border: 1px solid #f6d2c6;
+    }
+
+    /* ---------- SYLLABUS SECTION ---------- */
+    .content-wrapper {
+      max-width: 1150px;
+      margin: 18px auto 40px;
+      padding: 0 18px 40px;
+    }
+
+    .section-heading {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      margin-bottom: 14px;
+      color: var(--primary-dark);
+    }
+
+    .section-tagline {
+      font-size: 13px;
+      margin-bottom: 22px;
+      opacity: 0.8;
+      max-width: 520px;
+    }
+
+    .syllabus-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .accordion {
+      background: #fff;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .accordion-item + .accordion-item {
+      border-top: 1px solid #f5e0d4;
+    }
+
+    .accordion-header {
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: #fff;
+      transition: background 0.15s ease;
+    }
+
+    .accordion-header:hover {
+      background: #fff7f3;
+    }
+
+    .module-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .module-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+    }
+
+    .accordion-icon {
+      font-size: 18px;
+      margin-left: 10px;
+      color: var(--primary-dark);
+      transition: transform 0.2s ease;
+    }
+
+    .accordion-item.active .accordion-icon {
+      transform: rotate(90deg);
+    }
+
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.26s ease;
+      background: #fffdf9;
+    }
+
+    .accordion-panel-inner {
+      padding: 0 20px 16px 22px;
+      font-size: 13px;
+    }
+
+    .accordion-panel-inner ul {
+      list-style: disc;
+      padding-left: 18px;
+      margin-top: 6px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .accordion-panel-inner p {
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .course-side-card {
+      background: #fff5ee;
+      border-radius: var(--border-radius-lg);
+      padding: 18px 18px 20px;
+      border: 1px solid #f0c9b7;
+    }
+
+    .course-side-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+
+    .course-side-card ul {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .course-side-card li::before {
+      content: "✔";
+      margin-right: 6px;
+      font-size: 12px;
+      color: var(--primary-dark);
+    }
+
+    .badge-small {
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #f1c3b0;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 6px;
+      background: #fff;
+    }
+
+    .note-small {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--primary);
+      color: #ffece0;
+      padding: 32px 18px 18px;
+      margin-top: 24px;
+    }
+
+    .footer-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr) minmax(0, 1.3fr);
+      gap: 36px;
+    }
+
+    .footer-brand {
+      max-width: 380px;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .footer-brand-text-title {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .footer-brand-text-sub {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    .footer-heading {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .footer-links,
+    .footer-contact {
+      list-style: none;
+      font-size: 13px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .footer-links a {
+      opacity: 0.9;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .footer-social {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .footer-social a {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      max-width: 1150px;
+      margin: 18px auto 0;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    .footer-bottom a {
+      text-decoration: underline;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .syllabus-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .price-card {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 780px) {
+      nav {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        right: 0;
+        background: #fffaf4;
+        padding: 10px 18px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        transform: translateY(-140%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+
+      nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-phone {
+        margin-top: 4px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-title {
+        font-size: 26px;
+      }
+      .page-hero {
+        margin-top: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================== HEADER ================== -->
+  <header>
+    <div class="nav-container">
+      <a href="https://khushiastrologer.com/index.html" class="brand">
+        <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo" class="brand-logo-img" />
+        <div class="brand-text">
+          <span class="brand-text-title">Khushi Astrologer</span>
+          <span class="brand-text-sub">Vedic Astrology</span>
+        </div>
+      </a>
+
+      <div class="menu-toggle" id="menuToggle">&#9776;</div>
+
+      <nav id="mainNav">
+        <div class="nav-links">
+          <a href="https://khushiastrologer.com/index.html">Home</a>
+          <a href="https://khushiastrologer.com/course.html" class="active">Courses</a>
+          <a href="https://khushiastrologer.com/live.html">Live Classes</a>
+          <a href="https://khushiastrologer.com/service.html">Services</a>
+          <a href="https://khushiastrologer.com/about.html">About</a>
+          <a href="https://khushiastrologer.com/contact.html">Contact</a>
+        </div>
+        <div class="nav-phone">
+          <span class="nav-phone-icon">📞</span>
+          <span>+91 7083355911</span>
+        </div>
+        <a href="https://khushiastrologer.com/form.html">
+       
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================== HERO ================== -->
+  <section class="page-hero">
+    <div class="breadcrumb">
+      <a href="https://khushiastrologer.com/index.html">Home</a> /
+      <a href="https://khushiastrologer.com/course.html">Courses</a> /
+      <span>Tarot Card Reading – Basic Course</span>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span>Certification Course</span>
+          •
+          <span>Level 1 – Beginner</span>
+        </div>
+
+        <h1 class="hero-title">Tarot Card Reading – Basic Course</h1>
+
+        <p class="hero-subtitle">
+          Build a solid foundation in Tarot and learn how to read cards confidently for yourself and others, using intuitive and structured methods.
+        </p>
+
+        <div class="hero-meta">
+          <span>🕒 12+ Hours Live / Recorded</span>
+          <span>📚 6 Learning Modules</span>
+          <span>🎓 Certificate of Completion</span>
+        </div>
+      </div>
+
+      <div class="price-card">
+        <div class="price-label">Course Fee</div>
+        <div class="price-value">₹3499</div>
+        <p class="price-note">Includes notes, practice spreads and guided meditations.</p>
+        <p class="price-note certificate">You will get a certificate on successful completion of the course.</p>
+
+        <!-- BASIC COURSE ENROLL LINK -->
+        <!-- For advance course pages, change href to: https://khushiastrologer.com/asc.html -->
+        <a href="https://khushiastrologer.com/bsc.html">
+          <button class="btn-primary" style="width:100%; margin-bottom:10px;">Enroll Now</button>
+        </a>
+
+        <div class="price-tags">
+          <span>Beginner Friendly</span>
+          <span>Lifetime Access to Material</span>
+          <span>WhatsApp Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================== SYLLABUS ================== -->
+  <main class="content-wrapper">
+    <h2 class="section-heading">Detailed Syllabus</h2>
+    <p class="section-tagline">
+      Every module is designed to gently build your understanding of Tarot – from learning each card to reading complete spreads for real-life situations.
+    </p>
+
+    <div class="syllabus-grid">
+      <!-- Accordion / Left -->
+      <div class="accordion" id="syllabusAccordion">
+        <!-- Module 1 -->
+        <div class="accordion-item active">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 1: Introduction to Tarot</div>
+              <div class="module-tag">Foundations & Deck Structure</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Understand what Tarot really is and how it works as a tool of guidance.</p>
+              <ul>
+                <li>History & origin of Tarot</li>
+                <li>Difference between Tarot and oracle cards</li>
+                <li>Structure of the Tarot deck – 78 cards</li>
+                <li>Major vs. Minor Arcana</li>
+                <li>How to choose, cleanse & store your deck</li>
+                <li>Ethics & responsibilities of a Tarot reader</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 2: Major Arcana (0–21)</div>
+              <div class="module-tag">Life Lessons & Soul Journey</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Learn the story of the Fool’s journey and how each Major Arcana card reflects key phases in life.</p>
+              <ul>
+                <li>Meaning & symbolism of every Major Arcana card</li>
+                <li>Upright vs. reversed interpretations</li>
+                <li>Elemental, numerological & color symbolism</li>
+                <li>Using Major Arcana for big life questions</li>
+                <li>Common mistakes in reading Major Arcana</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 3: Minor Arcana & Court Cards</div>
+              <div class="module-tag">Daily Life Situations</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Decode the four suits and understand how they represent everyday experiences.</p>
+              <ul>
+                <li>Suits of Wands, Cups, Swords & Pentacles</li>
+                <li>Number cards (Ace–10) meanings & patterns</li>
+                <li>Court cards – Page, Knight, Queen, King</li>
+                <li>When court cards show people vs. energies</li>
+                <li>Element associations – Fire, Water, Air, Earth</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 4: Tarot Spread Techniques</div>
+              <div class="module-tag">Layouts & Questions</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Start putting cards together into meaningful spreads to answer specific questions.</p>
+              <ul>
+                <li>How to frame powerful Tarot questions</li>
+                <li>Single-card daily guidance spread</li>
+                <li>3-card spread – Past / Present / Future</li>
+                <li>Yes / No spreads & clarification cards</li>
+                <li>Simple love, career & decision spreads</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 5: Intuition & Energy Work</div>
+              <div class="module-tag">Reading Beyond the Book</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Develop your inner guidance so that Tarot becomes a living conversation with the Universe.</p>
+              <ul>
+                <li>Grounding & centering before reading</li>
+                <li>How to read Tarot intuitively (not just from guidebook)</li>
+                <li>Reading body language & energy of the seeker</li>
+                <li>Creating a sacred space for readings</li>
+                <li>Do’s & don’ts for protecting your energy</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 6 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <div>
+              <div class="module-title">Module 6: Practice Readings & Review</div>
+              <div class="module-tag">Hands-On Experience</div>
+            </div>
+            <div class="accordion-icon">›</div>
+          </div>
+          <div class="accordion-panel">
+            <div class="accordion-panel-inner">
+              <p>Apply everything you’ve learned through guided practice and feedback.</p>
+              <ul>
+                <li>Live practice readings with classmates / demo clients</li>
+                <li>Step-by-step reading flow – from shuffle to summary</li>
+                <li>How to deliver messages with compassion</li>
+                <li>Understanding card combinations</li>
+                <li>Q&A, doubt-clearing & final recap</li>
+                <li>Guidance on next level – Advance Tarot Course</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <aside class="course-side-card">
+        <span class="badge-small">Who is this course for?</span>
+        <h3>Become a Confident Tarot Beginner</h3>
+        <ul>
+          <li>Seekers who want to read Tarot for self-growth</li>
+          <li>Beginners with little or no experience in Tarot</li>
+          <li>Healers, coaches & astrologers adding a new tool</li>
+          <li>Anyone drawn to intuition, symbols & mysticism</li>
+        </ul>
+
+        <span class="badge-small">You will be able to</span>
+        <ul>
+          <li>Understand meanings of all 78 Tarot cards</li>
+          <li>Do clear 3-card & basic spreads</li>
+          <li>Read for yourself and your loved ones</li>
+          <li>Prepare to move into advanced Tarot practice</li>
+        </ul>
+
+        <p class="note-small">
+          Note: This is a foundational course. After completion, you can join the
+          <strong>Tarot Card Reading – Advance Course</strong> for deeper predictive techniques and professional-level skills.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ================== FOOTER ================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-title">
+          <img src="https://khushiastrologer.com/FINAL%20LOGO.png" alt="Khushi Astrologer Logo" class="footer-logo-img" />
+          <div>
+            <div class="footer-brand-text-title">Khushi Astrologer</div>
+            <div class="footer-brand-text-sub">Vedic Astrology Expert</div>
+          </div>
+        </div>
+        <p>
+          Guiding souls through ancient Vedic wisdom for over 15 years. Discover your divine path with personalized astrological and spiritual guidance.
+        </p>
+        <div class="footer-social">
+          <a href="#"><span>f</span></a>
+          <a href="#"><span>IG</span></a>
+          <a href="#"><span>▶</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="https://khushiastrologer.com/index.html">Home</a></li>
+          <li><a href="https://khushiastrologer.com/service.html">Services</a></li>
+          <li><a href="https://khushiastrologer.com/about.html">About Khushi</a></li>
+          <li><a href="https://khushiastrologer.com/contact.html">Contact</a></li>
+          <li><a href="https://khushiastrologer.com/course.html">Courses</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading">Contact Info</div>
+        <ul class="footer-contact">
+          <li>📞 +91 7083355911</li>
+          <li>✉ contact@khushiastrologer.com.com</li>
+          <li>📍 C-5, Ajay Enclave, Tihar Village,<br />New Delhi, 110018</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2025 Khushi Astrologer. All rights reserved. | Vedic Astrology Services</div>
+      <div>
+        <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;|&nbsp;
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================== JS ================== -->
+  <script>
+    // Mobile menu
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+
+    menuToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+
+    // Accordion
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    accordionItems.forEach((item) => {
+      const header = item.querySelector(".accordion-header");
+      const panel = item.querySelector(".accordion-panel");
+
+      // Set default open for items with .active
+      if (item.classList.contains("active")) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+
+      header.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        // Close all
+        accordionItems.forEach((other) => {
+          other.classList.remove("active");
+          const otherPanel = other.querySelector(".accordion-panel");
+          otherPanel.style.maxHeight = null;
+        });
+
+        // Open this one if it was not active
+        if (!isActive) {
+          item.classList.add("active");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
